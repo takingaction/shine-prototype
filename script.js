@@ -102,7 +102,8 @@
     };
 
     const play = () => {
-      ensureIframe();
+      if (!iframe) ensureIframe();
+      else sendCommand('playVideo');
       setPlaying(true);
     };
 
