@@ -173,9 +173,9 @@
     /* Local time ticker: estimates currentTime between YouTube API responses
        so the seek bar moves smoothly even if postMessage replies are slow. */
     const tickLocal = () => {
-      if (!isPlaying || !duration) return;
+      if (!isPlaying) return;
       const elapsed = (performance.now() - playbackStartedAt) / 1000;
-      const est = Math.min(playbackBaseTime + elapsed, duration);
+      const est = Math.min(playbackBaseTime + elapsed, duration || 1e9);
       currentTime = est;
       updateSeekUI();
     };
@@ -273,11 +273,11 @@
     });
 
     window.addEventListener('message', (e) => {
-      if (!iframe || e.source !== iframe.contentWindow) return;
+      if (!iframe) return;
       let data;
       try { data = JSON.parse(e.data); } catch (_) { return; }
-      if (data.event !== 'infoDelivery' || !data.info) return;
-      const info = data.info;
+      if (!data || (data.event !== 'infoDelivery' && data.event !== 'onStateChange')) return;
+      const info = data.info || data;
       if (typeof info.playerState === 'number') {
         // 1 = playing, 2 = paused, 0 = ended, 3 = buffering, 5 = cued
         if (info.playerState === 1) { setPlaying(true); startPolling(); }
