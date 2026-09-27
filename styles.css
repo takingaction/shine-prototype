@@ -1,5 +1,5 @@
 /* =========================================================
-   SHINE Refresh — styles.css
+   SHINE Refresh - styles.css
    Dark theatrical aesthetic. Gold reserved for CTAs.
    ========================================================= */
 
@@ -596,6 +596,39 @@ body.mobile-cta-visible { padding-bottom: 80px; }
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+.video__stop {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(6, 9, 26, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--ink);
+  font-size: 1.5rem;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease, background 120ms ease, border-color 120ms ease, color 120ms ease;
+  padding: 0;
+}
+.video__stop:hover,
+.video__stop:focus-visible {
+  background: rgba(6, 9, 26, 0.95);
+  border-color: var(--gold);
+  color: var(--gold);
+  outline: none;
+}
+.video__facade.is-playing .video__stop {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .video__cta-wrap { text-align: center; margin-top: 2rem; }

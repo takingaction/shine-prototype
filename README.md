@@ -1,6 +1,6 @@
-# SHINE Refresh — Prototype (B2B / Institutional)
+# SHINE Refresh - Prototype (B2B / Institutional)
 
-A single-page prototype of the SHINE site refresh, built for the **primary audience of institutional buyers** — venues, schools, and arts organizations that would license a SHINE intensive and then sell tickets to families in their community.
+A single-page prototype of the SHINE site refresh, built for the **primary audience of institutional buyers** - venues, schools, and arts organizations that would license a SHINE intensive and then sell tickets to families in their community.
 
 The Broward Center for the Performing Arts 2026 intensive is the **proof case study**, not the product being sold. There is no parent-facing "Reserve Your Spot" CTA; the conversion action is **"Inquire About Hosting."**
 
@@ -42,11 +42,11 @@ Placeholder (every `[bracketed]` shown with a subtle dashed underline in the bro
 | `[15–20]` student cohort floor | Fit section |
 | Student-to-staff ratio `[X:1]` | Meet Brian |
 
-**No pricing is shown on the page.** The program specs card explicitly says "Pricing varies by partnership model and cohort. Inquire for a tailored quote." This is intentional — institutional buyers qualify themselves via the inquiry form, and any price shown creates an anchor that can disqualify good leads.
+**No pricing is shown on the page.** The program specs card explicitly says "Pricing varies by partnership model and cohort. Inquire for a tailored quote." This is intentional - institutional buyers qualify themselves via the inquiry form, and any price shown creates an anchor that can disqualify good leads.
 
 ---
 
-## Phase 1 quick wins — what's already wired
+## Phase 1 quick wins - what's already wired
 
 From the plan's §10 Phase 1 checklist, adapted for B2B:
 
@@ -55,8 +55,8 @@ From the plan's §10 Phase 1 checklist, adapted for B2B:
 - [x] Final section is an inquiry CTA, not a parent enrollment CTA
 - [x] Video moved up, directly below the hero
 - [x] Mailto replaced with on-page inquiry form
-- [ ] Analytics, retargeting pixels, and email backend — not wired (per scope)
-- [ ] Form submission endpoint — not wired (form is JS-only, shows success state)
+- [ ] Analytics, retargeting pixels, and email backend - not wired (per scope)
+- [ ] Form submission endpoint - not wired (form is JS-only, shows success state)
 
 ---
 
@@ -89,13 +89,13 @@ The 18 source files were renamed for clarity:
 
 ## Things to collect from Brian before launch
 
-1. **Ages, cohort size, and daily hours** — currently bracketed.
+1. **Ages, cohort size, and daily hours** - currently bracketed.
 2. **Phone number** that should appear in the footer and form note.
 3. **Featured parent quote + 2 student quotes** with permissions, for the testimonials section.
-4. **A host/presenter quote from his Broward Center contact** — this is the most important missing piece of social proof. Without it, the case study lacks a voice from the buyer's side.
+4. **A host/presenter quote from his Broward Center contact** - this is the most important missing piece of social proof. Without it, the case study lacks a voice from the buyer's side.
 5. **Teaching staff bios and headshots** if there are other instructors.
-6. **Highlight video** — replace the placeholder YouTube URL in `index.html` with the real 60–120 second re-edit.
-7. **Host information packet (PDF)** — referenced via the "Download the host information packet" link. Mailto placeholder for now.
-8. **Geographic / travel radius** — add to FAQ if Brian wants to scope this.
+6. **Highlight video** - replace the placeholder YouTube URL in `index.html` with the real 60–120 second re-edit.
+7. **Host information packet (PDF)** - referenced via the "Download the host information packet" link. Mailto placeholder for now.
+8. **Geographic / travel radius** - add to FAQ if Brian wants to scope this.
 9. **Logo permissions** for Broward Center and ASCAP if those logos get added to the credibility strip.
-10. **Pricing model language** — even though no number is shown, you may want to publish the *structure* (e.g., "tiered by cohort size, includes travel and licensing"). Currently the page just says "Inquire for a tailored quote."
+10. **Pricing model language** - even though no number is shown, you may want to publish the *structure* (e.g., "tiered by cohort size, includes travel and licensing"). Currently the page just says "Inquire for a tailored quote."

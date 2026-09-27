@@ -1,5 +1,5 @@
 /* =========================================================
-   SHINE Refresh — script.js
+   SHINE Refresh - script.js
    No dependencies. ~80 lines.
    ========================================================= */
 
@@ -62,21 +62,54 @@
     io.observe(hero);
   }
 
-  /* --- Video facade (click-to-play) ----------------- */
+  /* --- Video facade (click-to-play, with stop) ------ */
   const videoFacade = document.querySelector('.video__facade');
   if (videoFacade) {
-    videoFacade.addEventListener('click', () => {
+    const stopBtn = videoFacade.querySelector('.video__stop');
+    const id = videoFacade.dataset.youtubeId || 'dQw4w9WgXcQ';
+    const title = videoFacade.dataset.videoTitle || 'SHINE: A Musical Theatre Creation Intensive';
+
+    const play = () => {
       if (videoFacade.dataset.loaded) return;
-      const id = videoFacade.dataset.youtubeId || 'dQw4w9WgXcQ'; // placeholder
-      const title = videoFacade.dataset.videoTitle || 'SHINE: A Musical Theatre Creation Intensive';
+      Array.from(videoFacade.children).forEach((child) => {
+        if (child !== stopBtn && child.tagName !== 'IFRAME') {
+          child.style.display = 'none';
+        }
+      });
       const iframe = document.createElement('iframe');
       iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`;
       iframe.title = title;
       iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
       iframe.setAttribute('allowfullscreen', '');
-      videoFacade.innerHTML = '';
       videoFacade.appendChild(iframe);
+      videoFacade.classList.add('is-playing');
       videoFacade.dataset.loaded = '1';
+    };
+
+    const stop = () => {
+      const iframe = videoFacade.querySelector('iframe');
+      if (iframe) iframe.remove();
+      Array.from(videoFacade.children).forEach((child) => {
+        if (child !== stopBtn) {
+          child.style.display = '';
+        }
+      });
+      videoFacade.classList.remove('is-playing');
+      delete videoFacade.dataset.loaded;
+    };
+
+    videoFacade.addEventListener('click', (e) => {
+      if (e.target.closest('.video__stop')) {
+        stop();
+        return;
+      }
+      play();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && videoFacade.classList.contains('is-playing')) {
+        stop();
+      }
     });
   }
 
