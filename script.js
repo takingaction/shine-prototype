@@ -65,7 +65,6 @@
   /* --- Video facade (play/pause/seek/volume/CC) ----- */
   const videoFacade = document.querySelector('.video__facade');
   if (videoFacade) {
-    const toggleBtn = videoFacade.querySelector('.video__toggle');
     const progress = videoFacade.querySelector('.video__progress');
     const seekEl = videoFacade.querySelector('.video__seek');
     const currentTimeEl = videoFacade.querySelector('.video__time--current');
@@ -99,7 +98,6 @@
     const setPlaying = (state) => {
       isPlaying = state;
       videoFacade.classList.toggle('is-playing', state);
-      toggleBtn.setAttribute('aria-label', state ? 'Pause video' : 'Play video');
     };
 
     const updateSeekUI = () => {
@@ -115,7 +113,7 @@
     const ensureIframe = () => {
       if (iframe) return iframe;
       Array.from(videoFacade.children).forEach((child) => {
-        if (child !== toggleBtn && child !== progress && child.tagName !== 'IFRAME') {
+        if (child !== progress && child.tagName !== 'IFRAME') {
           child.style.display = 'none';
         }
       });
@@ -149,12 +147,16 @@
       else sendCommand('playVideo');
       setPlaying(true);
       startPolling();
+      showControls();
     };
 
     const pause = () => {
       if (iframe) sendCommand('pauseVideo');
       setPlaying(false);
       stopPolling();
+      // Controls stay visible while paused (no auto-hide timer running).
+      clearTimeout(hideControlsTimer);
+      videoFacade.classList.add('controls-visible');
     };
 
     const toggle = () => {
@@ -220,8 +222,22 @@
       }
     });
 
+    /* --- Auto-hide the bottom controls after 3s of inactivity --- */
+    let hideControlsTimer = null;
+    const showControls = () => {
+      videoFacade.classList.add('controls-visible');
+      clearTimeout(hideControlsTimer);
+      if (isPlaying) {
+        hideControlsTimer = setTimeout(() => {
+          videoFacade.classList.remove('controls-visible');
+        }, 3000);
+      }
+    };
+    ['mousemove', 'mouseenter', 'touchstart', 'touchmove', 'focus'].forEach((evt) => {
+      videoFacade.addEventListener(evt, showControls, { passive: true });
+    });
+
     videoFacade.addEventListener('click', (e) => {
-      if (e.target.closest('.video__toggle')) { toggle(); return; }
       if (e.target.closest('.video__progress')) return;
       toggle();
     });

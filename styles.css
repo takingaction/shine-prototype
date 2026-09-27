@@ -607,44 +607,6 @@ body.mobile-cta-visible { padding-bottom: 80px; }
   border: 0;
 }
 
-.video__toggle {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 3;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: rgba(6, 9, 26, 0.85);
-  border: 2px solid var(--gold);
-  color: var(--gold);
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 160ms ease, background 120ms ease, transform 120ms ease;
-  padding: 0;
-}
-.video__toggle:hover,
-.video__toggle:focus-visible {
-  background: rgba(6, 9, 26, 0.95);
-  transform: scale(1.06);
-  outline: none;
-}
-.video__facade.is-playing .video__toggle {
-  opacity: 1;
-  pointer-events: auto;
-}
-.video__toggle-icon {
-  width: 22px;
-  height: 22px;
-  fill: currentColor;
-}
-.video__toggle-icon--pause { display: none; }
-.video__facade.is-playing .video__toggle-icon--play { display: none; }
-.video__facade.is-playing .video__toggle-icon--pause { display: block; }
-
 /* Progress / seek / volume / CC bar at the bottom of the facade */
 .video__progress {
   position: absolute;
@@ -665,9 +627,7 @@ body.mobile-cta-visible { padding-bottom: 80px; }
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
-.video__facade.is-playing .video__progress,
-.video__progress[style*="display: flex"],
-.video__progress:not([hidden]) {
+.video__facade.controls-visible .video__progress {
   opacity: 1;
   pointer-events: auto;
 }
