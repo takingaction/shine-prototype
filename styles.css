@@ -1260,6 +1260,10 @@ body.mobile-cta-visible { padding-bottom: 80px; }
   font-size: 0.95rem;
   color: var(--ink-muted);
 }
+.final-cta--b2b p.final-cta__secondary {
+  margin-top: 3rem;
+  margin-bottom: 0;
+}
 .final-cta__secondary a { color: var(--gold); font-weight: 600; border-bottom: 1px dashed var(--gold); }
 
 /* =========================================================
