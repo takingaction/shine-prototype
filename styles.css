@@ -908,9 +908,9 @@ body.mobile-cta-visible { padding-bottom: 80px; }
 .testimonials {
   display: grid;
   gap: 1.25rem;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
 }
-@media (max-width: 600px) { .testimonials { grid-template-columns: 1fr; } }
+@media (min-width: 901px) { .testimonials { grid-template-columns: repeat(2, 1fr); } }
 .quote {
   background: rgba(255,255,255,0.03);
   border: 1px solid var(--rule);
@@ -1247,7 +1247,7 @@ body.mobile-cta-visible { padding-bottom: 80px; }
 .final-cta p { color: var(--ink-muted); max-width: 600px; margin: 0 auto 1.5rem; }
 .final-cta .btn-primary { padding: 1.1rem 2.4rem; font-size: 1.1rem; }
 .final-cta__secondary {
-  margin-top: 1.25rem;
+  margin-top: 2rem;
   font-size: 0.95rem;
   color: var(--ink-muted);
 }
