@@ -106,9 +106,8 @@
       if (duration > 0) {
         seekEl.value = ((currentTime / duration) * 100).toFixed(2);
         seekEl.max = 100;
-      } else {
-        seekEl.value = 0;
       }
+      // When duration is unknown, leave seekEl.value at whatever the user dragged.
       currentTimeEl.textContent = formatTime(currentTime);
       durationEl.textContent = formatTime(duration);
     };
@@ -127,15 +126,21 @@
       iframe.setAttribute('allowfullscreen', '');
       videoFacade.appendChild(iframe);
       progress.hidden = false;
-      setTimeout(() => {
+      // YouTube's iframe takes a moment to be ready to respond. Retry
+      // getDuration over several ticks so we always catch it.
+      const queryPlayer = () => {
         sendCommand('getDuration');
         sendCommand('getCurrentTime');
         sendCommand('getVolume');
+      };
+      const queryCaptions = () => {
         sendCommand('loadModule', ['captions']);
-        // After loading captions module, explicitly query the tracklist.
-        // YouTube only pushes infoDelivery for things you ask for via getOption.
         sendCommand('getOption', ['captions', 'tracklist']);
-      }, 400);
+      };
+      setTimeout(queryPlayer, 300);
+      setTimeout(queryCaptions, 600);
+      setTimeout(queryPlayer, 1200);
+      setTimeout(queryPlayer, 2500);
       return iframe;
     };
 
@@ -170,11 +175,10 @@
     };
 
     seekEl.addEventListener('input', () => {
-      if (!duration) return;
-      const t = (parseFloat(seekEl.value) / 100) * duration;
+      const pct = parseFloat(seekEl.value);
+      const t = duration > 0 ? (pct / 100) * duration : pct;
       sendCommand('seekTo', [t, true]);
       currentTime = t;
-      updateSeekUI();
     });
 
     volumeEl.addEventListener('input', () => {
