@@ -1640,7 +1640,14 @@ body.mobile-cta-visible { padding-bottom: 80px; }
 #how-it-works .day p { color: var(--ink-muted); }
 #how-it-works .day p strong { color: var(--ink); }
 #how-it-works .timeline__hours { color: var(--ink-muted-on-light); }
-#how-it-works .timeline__hours strong { color: var(--ink-on-light); }
+#how-it-works .timeline__hours strong,
+#how-it-works .timeline__hours .placeholder {
+  color: inherit;
+  font-weight: inherit;
+  border-bottom: none;
+  cursor: inherit;
+  padding-bottom: 0;
+}
 
 /* --- Testimonials (#testimonials) ----------------------- */
 #testimonials {

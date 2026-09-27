@@ -79,6 +79,8 @@
     let duration = 0;
     let currentTime = 0;
     let pollId = null;
+    let playbackBaseTime = 0;     // currentTime at last play()/seek
+    let playbackStartedAt = 0;   // performance.now() at last play()/seek
 
     const sendCommand = (func, args = []) => {
       if (!iframe || !iframe.contentWindow) return;
@@ -168,9 +170,25 @@
       if (!iframe) return;
       sendCommand('getCurrentTime');
     };
+    /* Local time ticker: estimates currentTime between YouTube API responses
+       so the seek bar moves smoothly even if postMessage replies are slow. */
+    const tickLocal = () => {
+      if (!isPlaying || !duration) return;
+      const elapsed = (performance.now() - playbackStartedAt) / 1000;
+      const est = Math.min(playbackBaseTime + elapsed, duration);
+      currentTime = est;
+      updateSeekUI();
+    };
     const startPolling = () => {
       if (pollId) return;
-      pollId = setInterval(() => { if (isPlaying) poll(); }, 500);
+      playbackBaseTime = currentTime;
+      playbackStartedAt = performance.now();
+      pollId = setInterval(() => {
+        if (isPlaying) {
+          poll();
+          tickLocal();
+        }
+      }, 200);
     };
     const stopPolling = () => {
       if (pollId) { clearInterval(pollId); pollId = null; }
@@ -230,7 +248,7 @@
       if (isPlaying) {
         hideControlsTimer = setTimeout(() => {
           videoFacade.classList.remove('controls-visible');
-        }, 3000);
+        }, 2000);
       }
     };
     ['mousemove', 'mouseenter', 'touchstart', 'touchmove', 'focus'].forEach((evt) => {
