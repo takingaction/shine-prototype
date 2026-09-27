@@ -148,7 +148,10 @@
               <polygon points="32,24 32,56 58,40" fill="currentColor"></polygon>
             </svg>
           </div>
-          <button class="video__stop" type="button" aria-label="Stop video" tabindex="-1">×</button>
+          <button class="video__toggle" type="button" aria-label="Play video" tabindex="-1">
+            <svg class="video__toggle-icon video__toggle-icon--play" viewBox="0 0 24 24" aria-hidden="true"><polygon points="6,4 6,20 20,12"/></svg>
+            <svg class="video__toggle-icon video__toggle-icon--pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+          </button>
         </div>
         <div class="video__cta-wrap">
           <a class="btn btn-primary" href="#inquire">Inquire About Hosting</a>

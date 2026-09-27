@@ -62,54 +62,91 @@
     io.observe(hero);
   }
 
-  /* --- Video facade (click-to-play, with stop) ------ */
+  /* --- Video facade (play/pause via YouTube API) ---- */
   const videoFacade = document.querySelector('.video__facade');
   if (videoFacade) {
-    const stopBtn = videoFacade.querySelector('.video__stop');
+    const toggleBtn = videoFacade.querySelector('.video__toggle');
     const id = videoFacade.dataset.youtubeId || 'dQw4w9WgXcQ';
     const title = videoFacade.dataset.videoTitle || 'SHINE: A Musical Theatre Creation Intensive';
+    let iframe = null;
+    let isPlaying = false;
 
-    const play = () => {
-      if (videoFacade.dataset.loaded) return;
+    const sendCommand = (func) => {
+      if (!iframe || !iframe.contentWindow) return;
+      iframe.contentWindow.postMessage(
+        JSON.stringify({ event: 'command', func, args: [] }),
+        '*'
+      );
+    };
+
+    const setPlaying = (state) => {
+      isPlaying = state;
+      videoFacade.classList.toggle('is-playing', state);
+      toggleBtn.setAttribute('aria-label', state ? 'Pause video' : 'Play video');
+    };
+
+    const ensureIframe = () => {
+      if (iframe) return iframe;
       Array.from(videoFacade.children).forEach((child) => {
-        if (child !== stopBtn && child.tagName !== 'IFRAME') {
+        if (child !== toggleBtn && child.tagName !== 'IFRAME') {
           child.style.display = 'none';
         }
       });
-      const iframe = document.createElement('iframe');
-      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`;
+      iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&enablejsapi=1&rel=0&modestbranding=1`;
       iframe.title = title;
       iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
       iframe.setAttribute('allowfullscreen', '');
       videoFacade.appendChild(iframe);
-      videoFacade.classList.add('is-playing');
-      videoFacade.dataset.loaded = '1';
+      return iframe;
     };
 
-    const stop = () => {
-      const iframe = videoFacade.querySelector('iframe');
-      if (iframe) iframe.remove();
-      Array.from(videoFacade.children).forEach((child) => {
-        if (child !== stopBtn) {
-          child.style.display = '';
-        }
-      });
-      videoFacade.classList.remove('is-playing');
-      delete videoFacade.dataset.loaded;
+    const play = () => {
+      ensureIframe();
+      setPlaying(true);
+    };
+
+    const pause = () => {
+      if (iframe) sendCommand('pauseVideo');
+      setPlaying(false);
+    };
+
+    const toggle = () => {
+      if (isPlaying) pause();
+      else play();
     };
 
     videoFacade.addEventListener('click', (e) => {
-      if (e.target.closest('.video__stop')) {
-        stop();
-        return;
+      if (e.target.closest('.video__toggle')) {
+        toggle();
+      } else {
+        toggle();
       }
-      play();
     });
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && videoFacade.classList.contains('is-playing')) {
-        stop();
+        pause();
       }
+      if (e.key === ' ' && videoFacade.classList.contains('is-playing') && document.activeElement === videoFacade) {
+        e.preventDefault();
+        toggle();
+      }
+    });
+
+    /* Listen for YouTube iframe state updates to keep our button in sync
+       with what the user does via YouTube's own native controls. */
+    window.addEventListener('message', (e) => {
+      if (!iframe || e.source !== iframe.contentWindow) return;
+      try {
+        const data = JSON.parse(e.data);
+        if (data.event === 'infoDelivery' && data.info) {
+          const state = data.info.playerState;
+          // 1 = playing, 2 = paused, 0 = ended, 3 = buffering, 5 = cued
+          if (state === 1) setPlaying(true);
+          else if (state === 2 || state === 0) setPlaying(false);
+        }
+      } catch (_) {}
     });
   }
 
