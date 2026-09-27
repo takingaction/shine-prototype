@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Page not found · SHINE</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .nf { min-height: 70vh; display: grid; place-items: center; padding: 4rem 1.25rem; text-align: center; }
+    .nf__inner { max-width: 540px; }
+    .nf__code {
+      font-weight: 800;
+      font-size: clamp(5rem, 12vw, 8rem);
+      line-height: 1;
+      color: var(--gold);
+      margin: 0 0 0.5rem;
+      letter-spacing: -0.04em;
+    }
+    .nf h1 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      margin: 0 0 0.75rem;
+    }
+    .nf p { color: var(--ink-muted); margin: 0 0 2rem; font-size: 1.05rem; }
+    .nf__ctas { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
+  </style>
+</head>
+<body>
+  <main class="nf">
+    <div class="nf__inner">
+      <p class="nf__code">404</p>
+      <h1>This page is offstage.</h1>
+      <p>The link you followed doesn't lead anywhere. Head back to the program overview or jump straight to the inquiry form.</p>
+      <div class="nf__ctas">
+        <a class="btn btn-primary" href="/">Back to SHINE</a>
+        <a class="btn btn-ghost" href="/#inquire">Inquire about hosting</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

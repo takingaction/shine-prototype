@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SHINE: A Turnkey Musical Theatre Creation Program for Venues and Schools · FeinLine Academy</title>
+  <meta name="description" content="A 6-day intensive that turns your students into a working musical theatre company. Curriculum, lead artist, and production framework provided. Premiered at the Broward Center for the Performing Arts." />
+
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"How far in advance do we need to book?","acceptedAnswer":{"@type":"Answer","text":"Most hosts book 3–6 months in advance. Summer intensives typically confirm by February; school-year intensives by the start of the prior term."}},
+      {"@type":"Question","name":"What kind of space do we need?","acceptedAnswer":{"@type":"Answer","text":"A rehearsal room large enough for 20 students to move and a piano or keyboard. For the final performance, a theater or auditorium with a screen, lighting, and seating for an audience of family and friends."}},
+      {"@type":"Question","name":"Does Brian travel?","acceptedAnswer":{"@type":"Answer","text":"Yes. Brian leads intensives on-site at host venues. Travel is included in the partnership quote."}},
+      {"@type":"Question","name":"Do we need a piano?","acceptedAnswer":{"@type":"Answer","text":"An acoustic piano or full-size keyboard is required. Brian composes and rehearses at the instrument throughout the week."}},
+      {"@type":"Question","name":"How is the program marketed?","acceptedAnswer":{"@type":"Answer","text":"FeinLine provides marketing assets (photography, video clips, copy, and a host toolkit). Your team handles registration, ticketing, and local outreach to your community."}},
+      {"@type":"Question","name":"What about insurance and liability?","acceptedAnswer":{"@type":"Answer","text":"FeinLine carries professional liability insurance and can provide a COI naming your organization as additional insured for the intensive week."}},
+      {"@type":"Question","name":"What is the financial model?","acceptedAnswer":{"@type":"Answer","text":"Partnership pricing varies by cohort size, format, and travel. Most hosts use a combination of registration tuition and sponsorship. Inquire for a tailored quote."}},
+      {"@type":"Question","name":"Does my child need singing, acting, or songwriting experience?","acceptedAnswer":{"@type":"Answer","text":"No. SHINE is designed for first-timers and seasoned performers alike. All students learn songwriting from scratch with a professional composer at the piano."}},
+      {"@type":"Question","name":"What ages is SHINE for, and are groups split by age?","acceptedAnswer":{"@type":"Answer","text":"SHINE is open to ages [X–Y]. The cohort is one ensemble of about 20 students working together, regardless of experience level."}},
+      {"@type":"Question","name":"What does a typical day look like? Is lunch provided?","acceptedAnswer":{"@type":"Answer","text":"Days run [9:00 AM – 3:00 PM]. Mornings are writing and rehearsal; afternoons are scene work and staging. Lunch and snacks are arranged by the host."}},
+      {"@type":"Question","name":"Will the performance be recorded?","acceptedAnswer":{"@type":"Answer","text":"Yes. Families receive a recording of the final performance along with the original script the ensemble created."}},
+      {"@type":"Question","name":"What should my child bring?","acceptedAnswer":{"@type":"Answer","text":"A water bottle, a packed snack if you have dietary restrictions, and clothes they can move in. Everything else — script, materials, and SHINE T-shirt — is provided."}},
+      {"@type":"Question","name":"What happens to the musical they create? Who owns it?","acceptedAnswer":{"@type":"Answer","text":"The original script and songs remain part of the ensemble's portfolio. Each student receives a printed copy and a recording as a keepsake."}}
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ============= ANNOUNCEMENT BAR ============= -->
+  <div class="announcement-bar" role="region" aria-label="Announcement">
+    <span>Now booking 2027 host dates · Limited calendar · 6-day intensive · </span>
+    <a href="#inquire">→ Inquire About Hosting</a>
+    <button class="announcement-bar__close" aria-label="Dismiss announcement">×</button>
+  </div>
+
+  <!-- ============= NAV ============= -->
+  <header class="nav" role="banner">
+    <div class="container nav__inner">
+      <a href="#" class="nav__brand" aria-label="SHINE home">
+        <span>SHINE</span>
+      </a>
+      <button class="nav__toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">☰</button>
+      <ul id="primary-nav" class="nav__links">
+        <li><a href="#program">Program</a></li>
+        <li><a href="#how-it-works">Hosting</a></li>
+        <li><a href="#case-study">Case Study</a></li>
+        <li><a href="#meet-brian">Brian</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a class="btn btn-primary nav__cta" href="#inquire">Inquire About Hosting</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ============= MOBILE STICKY CTA ============= -->
+  <div class="mobile-cta">
+    <a class="btn btn-primary" href="#inquire">Inquire About Hosting</a>
+  </div>
+
+  <main>
+
+    <!-- ============= HERO ============= -->
+    <section class="hero" id="hero">
+      <div class="container hero__inner">
+        <div class="hero__text">
+          <div class="hero__eyebrow">For venues, schools, and arts organizations</div>
+          <h1>Bring an original musical to <em>your</em> stage.</h1>
+          <p class="hero__sub">
+            In 6 days, your students write, compose, and perform an original musical — in your venue.
+            Award-winning composer Brian Feinstein leads as lead artist. Full curriculum provided.
+          </p>
+          <div class="hero__ctas">
+            <a class="btn btn-primary" href="#inquire">Inquire About Hosting</a>
+            <a class="btn-text" href="#video" aria-label="Watch the SHINE story">▶ See the Broward Center premiere</a>
+          </div>
+          <p class="hero__micro">No prior music experience required for your students · Curriculum, lead artist, and production framework provided</p>
+        </div>
+
+        <aside class="hero__panel" aria-label="Program at a glance">
+          <div class="hero__facts-card">
+            <p class="hero__facts-card-title">Program specs</p>
+            <div class="hero__facts-grid">
+              <div class="hero__fact">
+                <span class="hero__fact-label">Duration</span>
+                <span class="hero__fact-value">6 days</span>
+              </div>
+              <div class="hero__fact">
+                <span class="hero__fact-label">Format</span>
+                <span class="hero__fact-value">Intensive</span>
+              </div>
+              <div class="hero__fact">
+                <span class="hero__fact-label">Ages</span>
+                <span class="hero__fact-value"><span class="placeholder">[X–Y]</span></span>
+              </div>
+              <div class="hero__fact">
+                <span class="hero__fact-label">Cohort</span>
+                <span class="hero__fact-value">Up to 20</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero__anchor">
+            <img src="assets/logo-shine.png" alt="" aria-hidden="true" />
+            <div class="hero__anchor-text">
+              <span class="hero__anchor-label">Premiered at</span>
+              <span class="hero__anchor-value">Broward Center for the Performing Arts</span>
+              <span class="hero__anchor-meta">Summer 2026 · 17 students · 1 original musical</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============= CREDIBILITY STRIP ============= -->
+    <section class="credibility" aria-label="Credentials">
+      <div class="container credibility__row">
+        <div class="credibility__premier">Premiered at the <strong>Broward Center for the Performing Arts</strong></div>
+        <div class="credibility__chips">
+          <span class="credibility__chip">Created by a composer whose work has been performed by the <strong>Boston Pops</strong></span>
+          <span class="credibility__chip">Starring <strong>Eartha Kitt</strong></span>
+          <span class="credibility__chip"><strong>Jonathan Larson Fellow</strong></span>
+          <span class="credibility__chip"><strong>ASCAP Plus Award</strong> recipient</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= VIDEO ============= -->
+    <section class="section video" id="video">
+      <div class="container">
+        <div class="video__head">
+          <h2>Watch the Broward Center 2026 students premiere an original musical.</h2>
+          <p>17 students. 6 days. 1 show. (Click to play.)</p>
+        </div>
+        <div class="video__facade" data-youtube-id="0jQkX_gNHNY" data-video-title="SHINE at the Broward Center for the Performing Arts" role="button" tabindex="0" aria-label="Play SHINE highlight video">
+          <img src="assets/gallery-cast-bow.jpg" alt="SHINE ensemble celebrating on stage after the 2026 Broward Center premiere" />
+          <div class="video__caption">SHINE · Broward Center for the Performing Arts · Summer 2026</div>
+          <div class="video__play" aria-hidden="true">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="32,24 32,56 58,40" fill="currentColor"></polygon>
+            </svg>
+          </div>
+        </div>
+        <div class="video__cta-wrap">
+          <a class="btn btn-primary" href="#inquire">Inquire About Hosting</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= WE BRING / YOU BRING ============= -->
+    <section class="section section--alt" id="program">
+      <div class="container">
+        <div class="section__head">
+          <div class="section__eyebrow">What a partnership looks like</div>
+          <h2>We bring the curriculum. You bring the room.</h2>
+          <p class="section__lead">SHINE is a true partnership. Here's exactly who does what.</p>
+        </div>
+
+        <div class="split">
+          <div class="split__col split__col--we">
+            <h3>We bring</h3>
+            <ul>
+              <li>The full SHINE curriculum and lesson framework</li>
+              <li>Brian Feinstein as lead artist and music director</li>
+              <li>Sheet music, lyric frameworks, and production playbook</li>
+              <li>Marketing assets (photography, video, copy, host toolkit)</li>
+              <li>Liability insurance and COI documentation</li>
+              <li>Post-show debrief and a recorded copy of the performance</li>
+            </ul>
+          </div>
+          <div class="split__col">
+            <h3 style="color:var(--accent);">You bring</h3>
+            <ul>
+              <li>Rehearsal space large enough for 20 students to move</li>
+              <li>Performance venue for the Friday/Saturday opening</li>
+              <li>A piano or full-size keyboard</li>
+              <li>On-site teaching assistant(s) — typically 1–2 adults</li>
+              <li>Promotion, registration, and ticketing through your channels</li>
+              <li>Families, donors, and press — your audience</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= HOW IT WORKS (Timeline) ============= -->
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <div class="section__head">
+          <div class="section__eyebrow">A typical host week</div>
+          <h2>The 6-day journey from a blank page to opening night.</h2>
+          <p class="section__lead">Brian leads each day. Your team supports on the ground.</p>
+        </div>
+
+        <div class="timeline">
+          <article class="day">
+            <div class="day__media"><img src="assets/day-1-ensemble.jpg" alt="Brian at the piano with the ensemble on Day 1" /></div>
+            <div>
+              <span class="day__num">Day 1 · The Blank Page</span>
+              <h3>Ensemble forms, ideas fly.</h3>
+              <p><strong>Brian:</strong> leads creative games and story prompts. <strong>Host team:</strong> greets families, runs morning logistics.</p>
+            </div>
+          </article>
+
+          <article class="day">
+            <div class="day__media"><img src="assets/day-2-planning.jpg" alt="Students gathered around a table planning the story" /></div>
+            <div>
+              <span class="day__num">Day 2 · Characters and Story</span>
+              <h3>The group votes on the story.</h3>
+              <p><strong>Brian:</strong> facilitates the writing of plot and characters. <strong>Host team:</strong> teaching assistants support small-group work.</p>
+            </div>
+          </article>
+
+          <article class="day">
+            <div class="day__media"><img src="assets/day-3-piano-laugh.jpg" alt="Brian at the piano leading the songwriting session" /></div>
+            <div>
+              <span class="day__num">Day 3 · Writing the Songs</span>
+              <h3>Original music is born.</h3>
+              <p><strong>Brian:</strong> composes at the piano with students. <strong>Host team:</strong> documents the process for marketing and families.</p>
+            </div>
+          </article>
+
+          <article class="day">
+            <div class="day__media"><img src="assets/day-4-choreo.jpg" alt="Students rehearsing choreography and staging" /></div>
+            <div>
+              <span class="day__num">Day 4 · Scenes and Staging</span>
+              <h3>Dialogue meets blocking.</h3>
+              <p><strong>Brian:</strong> writes dialogue and stages scenes. <strong>Host team:</strong> arranges the venue for tech rehearsals.</p>
+            </div>
+          </article>
+
+          <article class="day">
+            <div class="day__media"><img src="assets/gallery-rehearsal.jpg" alt="Full cast in rehearsal on the venue stage" /></div>
+            <div>
+              <span class="day__num">Day 5 · Rehearsal</span>
+              <h3>Polish. Costumes. Props.</h3>
+              <p><strong>Brian:</strong> runs full run-throughs. <strong>Host team:</strong> coordinates costumes, programs, and front-of-house.</p>
+            </div>
+          </article>
+
+          <article class="day">
+            <div class="day__media"><img src="assets/day-6-solo.jpg" alt="A young performer on stage during the opening-night performance" /></div>
+            <div>
+              <span class="day__num">Day 6 · Opening Night</span>
+              <h3>Your venue. Their bows.</h3>
+              <p><strong>Brian:</strong> directs the performance and supports the cast. <strong>Host team:</strong> runs box office, houses the audience, hosts the reception.</p>
+            </div>
+          </article>
+        </div>
+
+        <p class="timeline__hours">Daily schedule: <strong><span class="placeholder">[9:00 AM – 3:00 PM]</span></strong> · Final performance in the evening on Day 6</p>
+      </div>
+    </section>
+
+    <!-- ============= OUTCOMES (dual) ============= -->
+    <section class="section section--warm" id="outcomes">
+      <div class="container">
+        <div class="section__head">
+          <div class="section__eyebrow">Why hosts book SHINE</div>
+          <h2>What your students - and your organization - take home.</h2>
+        </div>
+
+        <div class="outcomes-stack">
+          <div>
+            <h3 class="outcomes-group__title">For your <span>students</span></h3>
+            <div class="outcomes">
+              <div class="outcome">
+                <div class="outcome__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6m0 8v6M4.93 4.93l4.24 4.24m5.66 5.66l4.24 4.24M2 12h6m8 0h6"/></svg>
+                </div>
+                <h3>Confidence</h3>
+                <p>To share original ideas and perform in front of a real audience.</p>
+              </div>
+              <div class="outcome">
+                <div class="outcome__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                </div>
+                <h3>Real songwriting skills</h3>
+                <p>Taught by working professionals — not just games.</p>
+              </div>
+              <div class="outcome">
+                <div class="outcome__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
+                </div>
+                <h3>Collaboration</h3>
+                <p>Building something with a true ensemble.</p>
+              </div>
+              <div class="outcome">
+                <div class="outcome__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                </div>
+                <h3>A professional stage experience</h3>
+                <p>Performing in a real performing arts venue.</p>
+              </div>
+              <div class="outcome">
+                <div class="outcome__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+                </div>
+                <h3>Their name on an original work</h3>
+                <p>Script and recording as a keepsake.</p>
+              </div>
+              <div class="outcome">
+                <div class="outcome__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </div>
+                <h3>Friendships</h3>
+                <p>With other creative kids who get it.</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="outcomes-group__title">For your <span>organization</span></h3>
+            <div class="outcomes">
+              <div class="outcome">
+                <div class="outcome__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M3 12h18M3 17h12"/></svg>
+                </div>
+                <h3>A flagship education event</h3>
+                <p>Centerpiece programming for the season.</p>
+              </div>
+              <div class="outcome">
+                <div class="outcome__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                </div>
+                <h3>A sellable opening night</h3>
+                <p>Families, donors, and press attend.</p>
+              </div>
+              <div class="outcome">
+                <div class="outcome__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+                </div>
+                <h3>Marketing content</h3>
+                <p>Photos and video clips you can use year-round.</p>
+              </div>
+              <div class="outcome">
+                <div class="outcome__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+                <h3>Community engagement</h3>
+                <p>A project that brings your constituency together.</p>
+              </div>
+              <div class="outcome">
+                <div class="outcome__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>
+                </div>
+                <h3>Audience development</h3>
+                <p>Introduces new families to your venue.</p>
+              </div>
+              <div class="outcome">
+                <div class="outcome__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+                </div>
+                <h3>Education programming</h3>
+                <p>A credit-worthy addition to your season.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= IS SHINE RIGHT FOR MY VENUE? ============= -->
+    <section class="section section--alt" id="fit">
+      <div class="container">
+        <div class="section__head">
+          <div class="section__eyebrow">Is SHINE right for my venue?</div>
+          <h2>You'll know pretty quickly.</h2>
+        </div>
+
+        <div class="fit__grid">
+          <div class="fit__list">
+            <h3>Great fit if…</h3>
+            <ul>
+              <li>You're a venue, school, or arts org that wants a flagship education event.</li>
+              <li>You have a cohort of <span class="placeholder">[15–20]</span> students who can commit to the full 6 days.</li>
+              <li>You have a piano, a stage, and an audience willing to come.</li>
+              <li>You want programming that produces visible, marketable outcomes.</li>
+              <li>You can dedicate 1–2 teaching assistants to support on-site.</li>
+            </ul>
+          </div>
+          <div class="fit__list">
+            <h3>Probably not the right fit if…</h3>
+            <ul>
+              <li>You're looking for a drop-in workshop rather than a full intensive.</li>
+              <li>You can't guarantee a committed cohort of at least <span class="placeholder">[15]</span> students.</li>
+              <li>You don't have a performance space or an audience pipeline.</li>
+              <li>You need FeinLine to handle registration, ticketing, and families end-to-end (a turnkey tier is on the roadmap).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= TESTIMONIALS ============= -->
+    <section class="section" id="testimonials">
+      <div class="container">
+        <div class="section__head">
+          <div class="section__eyebrow">What families and educators say</div>
+          <h2>Parents and educators notice who their kids become.</h2>
+        </div>
+
+        <div class="testimonials">
+          <figure class="quote quote--accent">
+            <span class="quote__mark" aria-hidden="true">“</span>
+            <blockquote class="quote__body"><span class="placeholder">[Featured parent quote — e.g. "She came home every night buzzing about what they'd written. By opening night she was a different kid."]</span></blockquote>
+            <figcaption class="quote__cite"><strong><span class="placeholder">[Parent Name]</span></strong><span class="placeholder">[City, Year]</span></figcaption>
+          </figure>
+
+          <figure class="quote">
+            <span class="quote__mark" aria-hidden="true">“</span>
+            <blockquote class="quote__body"><span class="placeholder">[Student quote — short: "I didn't know I could write a song."]</span></blockquote>
+            <figcaption class="quote__cite"><strong><span class="placeholder">[Student first name], [age]</span></strong></figcaption>
+          </figure>
+
+          <figure class="quote">
+            <span class="quote__mark" aria-hidden="true">“</span>
+            <blockquote class="quote__body"><span class="placeholder">[Student quote — short: "It was the hardest and best week of my summer."]</span></blockquote>
+            <figcaption class="quote__cite"><strong><span class="placeholder">[Student first name], [age]</span></strong></figcaption>
+          </figure>
+
+          <figure class="quote">
+            <span class="quote__mark" aria-hidden="true">“</span>
+            <blockquote class="quote__body">His student-centered approach… builds both skills and confidence, leaving a lasting impact.</blockquote>
+            <figcaption class="quote__cite"><strong><span class="placeholder">[Educator name and title]</span></strong><span class="placeholder">[School or organization]</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="stats" role="list">
+          <div role="listitem"><span class="stat__num">17</span><span class="stat__label">students in the 2026 cohort</span></div>
+          <div role="listitem"><span class="stat__num">6</span><span class="stat__label">days from blank page to bows</span></div>
+          <div role="listitem"><span class="stat__num">1</span><span class="stat__label">original musical, end to end</span></div>
+          <div role="listitem"><span class="stat__num"><span class="placeholder">[X]</span>%</span><span class="stat__label">of families would recommend</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= MEET BRIAN ============= -->
+    <section class="section section--alt" id="meet-brian">
+      <div class="container">
+        <div class="section__head">
+          <div class="section__eyebrow">Your lead artist</div>
+          <h2>Brian Feinstein.</h2>
+        </div>
+
+        <div class="brian">
+          <div class="brian__photo">
+            <img src="assets/brian-student.jpg" alt="Composer Brian Feinstein with a SHINE student on stage" />
+          </div>
+          <div>
+            <p class="brian__pull">"Creativity isn't taught. It's unlocked."</p>
+            <p class="brian__bio">
+              Brian Feinstein is an award-winning musical theatre composer and educator whose work
+              has been performed by the Boston Pops, produced Off-Broadway, and starred the legendary
+              Eartha Kitt. He's a Jonathan Larson Fellow, author of <em>The FeinLine Philosophy</em>,
+              and founder of FeinLine Academy. He leads every SHINE intensive personally.
+            </p>
+            <ul class="brian__creds">
+              <li>Boston Pops</li>
+              <li>Off-Broadway</li>
+              <li>Eartha Kitt</li>
+              <li>Jonathan Larson Fellow</li>
+              <li>ASCAP Plus Award</li>
+              <li>The FeinLine Philosophy</li>
+              <li>Founder, FeinLine Academy</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="staff">
+          <div class="staff__photo">
+            <img src="assets/staff.jpg" alt="Brian Feinstein with the SHINE teaching staff on stage" />
+          </div>
+          <div>
+            <h3>Teaching staff & safety</h3>
+            <p>Brian leads the ensemble with a small team of teaching artists and music directors.</p>
+            <ul>
+              <li>Student-to-staff ratio: <span class="placeholder">[X:1]</span></li>
+              <li>All staff pass background checks</li>
+              <li>Professional liability insurance and COI provided to host</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= GALLERY ============= -->
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="section__head">
+          <div class="section__eyebrow">Gallery · Broward Center 2026</div>
+          <h2>Six days. Faces, focus, and the moment they bow.</h2>
+        </div>
+
+        <div class="gallery" id="gallery-grid">
+          <button class="gallery__item gallery__item--tall" aria-label="Open image: ensemble dramatic pose">
+            <img src="assets/gallery-cast-pose.jpg" alt="Full SHINE ensemble in a dramatic final pose around a seated performer" />
+          </button>
+          <button class="gallery__item gallery__item--wide" aria-label="Open image: ensemble choir">
+            <img src="assets/gallery-choir.jpg" alt="Brian leading the ensemble in song on stage" />
+          </button>
+          <button class="gallery__item" aria-label="Open image: finale high-five">
+            <img src="assets/gallery-highfive.jpg" alt="Two students high-fiving on stage during the finale" />
+          </button>
+          <button class="gallery__item" aria-label="Open image: full-cast rehearsal">
+            <img src="assets/gallery-rehearsal.jpg" alt="Full cast rehearsing on the venue stage with set design" />
+          </button>
+          <button class="gallery__item gallery__item--tall" aria-label="Open image: solo performance">
+            <img src="assets/day-6-solo.jpg" alt="A young performer singing solo on stage" />
+          </button>
+          <button class="gallery__item" aria-label="Open image: ensemble bow">
+            <img src="assets/gallery-cast-bow.jpg" alt="SHINE ensemble celebrating together on stage after the performance" />
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= CASE STUDY ============= -->
+    <section class="case" id="case-study">
+      <div class="container">
+        <div class="case__inner">
+          <div>
+            <div class="case__eyebrow">Case study</div>
+            <h2>SHINE at the Broward Center for the Performing Arts.</h2>
+            <p class="case__narrative">
+              In Summer 2026, the Broward Center for the Performing Arts hosted the inaugural
+              SHINE intensive on its stage. <span class="placeholder">[17]</span> students,
+              ages <span class="placeholder">[X–Y]</span>, walked in on Monday with a blank whiteboard
+              and walked out on Saturday to a packed house of family, donors, and press —
+              performing a fully original musical they had written, composed, and rehearsed themselves.
+            </p>
+            <div class="case__stats">
+              <div class="case__stat"><span class="case__stat-num">17</span><span class="case__stat-label">students enrolled</span></div>
+              <div class="case__stat"><span class="case__stat-num">6</span><span class="case__stat-label">days to opening night</span></div>
+              <div class="case__stat"><span class="case__stat-num">1</span><span class="case__stat-label">original musical</span></div>
+            </div>
+            <div class="case__quote">
+              <blockquote><span class="placeholder">"[Host/presenter quote — Brian to collect from his Broward Center contact. Placeholder is fine.]"</span></blockquote>
+              <cite>— <span class="placeholder">[Name and title]</span>, Broward Center for the Performing Arts</cite>
+            </div>
+            <a class="case__link" href="https://www.browardcenter.org/education/programs/intensives/" target="_blank" rel="noopener">
+              More about the Broward Center education program →
+            </a>
+          </div>
+          <div class="case__photos">
+            <img class="tall" src="assets/gallery-cast-pose.jpg" alt="SHINE ensemble in a dramatic final pose on the Broward Center stage" />
+            <img src="assets/gallery-rehearsal.jpg" alt="Full cast rehearsing on the Broward Center stage" />
+            <img src="assets/day-6-solo.jpg" alt="A young performer singing solo during the opening night" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= PROGRAM SPECS + INQUIRY FORM ============= -->
+    <section class="section session-wrap" id="inquire">
+      <div class="container">
+        <div class="program">
+          <div>
+            <h2>Program <span>specs</span></h2>
+            <p class="program__lead">Everything in scope, side by side.</p>
+
+            <div class="program__specs">
+              <div class="program__spec"><strong>Format</strong> <span>6-day intensive</span></div>
+              <div class="program__spec"><strong>Daily hours</strong> <span><span class="placeholder">[9:00 AM – 3:00 PM]</span></span></div>
+              <div class="program__spec"><strong>Final performance</strong> <span>Evening of Day 6</span></div>
+              <div class="program__spec"><strong>Ages</strong> <span><span class="placeholder">[X–Y]</span></span></div>
+              <div class="program__spec"><strong>Cohort size</strong> <span>Up to 20 students</span></div>
+              <div class="program__spec"><strong>Travel</strong> <span>Brian travels on-site; travel included in partnership quote</span></div>
+            </div>
+
+            <ul class="program__perks">
+              <li>Lead artist (Brian Feinstein) on-site for the full week</li>
+              <li>Music direction at the piano every day</li>
+              <li>Curriculum, sheet music, and lyric frameworks</li>
+              <li>Production playbook and staging templates</li>
+              <li>Marketing assets and host toolkit</li>
+              <li>Professional liability insurance and COI</li>
+              <li>Post-show debrief and recorded performance copy</li>
+            </ul>
+
+            <div class="program__price">
+              <p><strong>Investment:</strong> Pricing varies by partnership model and cohort. <strong>Inquire for a tailored quote.</strong></p>
+            </div>
+          </div>
+
+          <aside aria-label="Inquiry form">
+            <form class="form" id="inquiry-form" novalidate>
+              <h3>Inquire about hosting</h3>
+              <p class="form__lead">Tell us about your organization. Brian will respond within 2 business days.</p>
+
+              <div class="form__row">
+                <div class="form__field">
+                  <label class="form__label" for="if-name">Your name <span class="form__required">*</span></label>
+                  <input class="form__input" id="if-name" name="name" type="text" required autocomplete="name" />
+                </div>
+                <div class="form__field">
+                  <label class="form__label" for="if-role">Role / title</label>
+                  <input class="form__input" id="if-role" name="role" type="text" autocomplete="organization-title" />
+                </div>
+              </div>
+
+              <div class="form__field">
+                <label class="form__label" for="if-org">Organization <span class="form__required">*</span></label>
+                <input class="form__input" id="if-org" name="organization" type="text" required autocomplete="organization" />
+              </div>
+
+              <div class="form__row">
+                <div class="form__field">
+                  <label class="form__label" for="if-type">Organization type</label>
+                  <select class="form__select" id="if-type" name="type">
+                    <option value="">Select…</option>
+                    <option>School</option>
+                    <option>Theatre / Performing arts center</option>
+                    <option>Arts organization</option>
+                    <option>Camp</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="form__field">
+                  <label class="form__label" for="if-loc">City, state</label>
+                  <input class="form__input" id="if-loc" name="location" type="text" />
+                </div>
+              </div>
+
+              <div class="form__row">
+                <div class="form__field">
+                  <label class="form__label" for="if-email">Email <span class="form__required">*</span></label>
+                  <input class="form__input" id="if-email" name="email" type="email" required autocomplete="email" />
+                </div>
+                <div class="form__field">
+                  <label class="form__label" for="if-phone">Phone</label>
+                  <input class="form__input" id="if-phone" name="phone" type="tel" autocomplete="tel" />
+                </div>
+              </div>
+
+              <div class="form__row">
+                <div class="form__field">
+                  <label class="form__label" for="if-format">Preferred format</label>
+                  <select class="form__select" id="if-format" name="format">
+                    <option value="">Select…</option>
+                    <option>6-day intensive</option>
+                    <option>Not sure yet</option>
+                  </select>
+                </div>
+                <div class="form__field">
+                  <label class="form__label" for="if-enroll">Estimated enrollment</label>
+                  <input class="form__input" id="if-enroll" name="enrollment" type="text" placeholder="e.g. 15–20 students" />
+                </div>
+              </div>
+
+              <div class="form__field">
+                <label class="form__label" for="if-timing">Preferred timing or season</label>
+                <input class="form__input" id="if-timing" name="timing" type="text" placeholder="e.g. Summer 2027, Fall semester" />
+              </div>
+
+              <div class="form__field">
+                <label class="form__label" for="if-notes">Anything else we should know?</label>
+                <textarea class="form__textarea" id="if-notes" name="notes" rows="3"></textarea>
+              </div>
+
+              <button class="btn btn-primary form__submit" type="submit">Send Inquiry</button>
+              <p class="form__note">Or email <a href="mailto:brian@feinlineacademy.com">brian@feinlineacademy.com</a> directly.</p>
+            </form>
+
+            <div class="form__success" id="inquiry-success" role="status" aria-live="polite">
+              <h3>Thanks — your inquiry is in.</h3>
+              <p>Brian will follow up within 2 business days. In the meantime, the host information packet is on its way to your inbox.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= FAQ ============= -->
+    <section class="section section--alt" id="faq">
+      <div class="container">
+        <div class="section__head">
+          <div class="section__eyebrow">FAQ</div>
+          <h2>The questions hosts - and parents - ask most.</h2>
+        </div>
+
+        <div class="faq">
+          <details>
+            <summary>How far in advance do we need to book?</summary>
+            <p class="faq__answer">Most hosts book 3–6 months in advance. Summer intensives typically confirm by February; school-year intensives by the start of the prior term.</p>
+          </details>
+          <details>
+            <summary>What kind of space do we need?</summary>
+            <p class="faq__answer">A rehearsal room large enough for 20 students to move, and a theater or auditorium for the final performance with lighting, a screen for projections, and seating for an audience of family and friends.</p>
+          </details>
+          <details>
+            <summary>Does Brian travel?</summary>
+            <p class="faq__answer">Yes. Brian leads intensives on-site at host venues. Travel is included in the partnership quote.</p>
+          </details>
+          <details>
+            <summary>Do we need a piano?</summary>
+            <p class="faq__answer">An acoustic piano or full-size keyboard is required. Brian composes and rehearses at the instrument throughout the week.</p>
+          </details>
+          <details>
+            <summary>How is the program marketed?</summary>
+            <p class="faq__answer">FeinLine provides marketing assets (photography, video clips, copy, and a host toolkit). Your team handles registration, ticketing, and local outreach to your community.</p>
+          </details>
+          <details>
+            <summary>What about insurance and liability?</summary>
+            <p class="faq__answer">FeinLine carries professional liability insurance and can provide a COI naming your organization as additional insured for the intensive week.</p>
+          </details>
+          <details>
+            <summary>What is the financial model?</summary>
+            <p class="faq__answer">Partnership pricing varies by cohort size, format, and travel. Most hosts use a combination of registration tuition and sponsorship. Inquire for a tailored quote.</p>
+          </details>
+          <details>
+            <summary>Does my child need singing, acting, or songwriting experience?</summary>
+            <p class="faq__answer">No. SHINE is designed for first-timers and seasoned performers alike. All students learn songwriting from scratch with a professional composer at the piano.</p>
+          </details>
+          <details>
+            <summary>What ages is SHINE for?</summary>
+            <p class="faq__answer">SHINE is open to ages <span class="placeholder">[X–Y]</span>. The cohort is one ensemble of about 20 students working together, regardless of experience level.</p>
+          </details>
+          <details>
+            <summary>What does a typical day look like?</summary>
+            <p class="faq__answer">Days run <span class="placeholder">[9:00 AM – 3:00 PM]</span>. Mornings are writing and rehearsal; afternoons are scene work and staging. Lunch and snacks are arranged by the host.</p>
+          </details>
+          <details>
+            <summary>Will the performance be recorded?</summary>
+            <p class="faq__answer">Yes. Families receive a recording of the final performance along with the original script the ensemble created.</p>
+          </details>
+          <details>
+            <summary>What should my child bring?</summary>
+            <p class="faq__answer">A water bottle, a packed snack if you have dietary restrictions, and clothes they can move in. Everything else — script, materials, and SHINE T-shirt — is provided.</p>
+          </details>
+          <details>
+            <summary>What happens to the musical they create? Who owns it?</summary>
+            <p class="faq__answer">The original script and songs remain part of the ensemble's portfolio. Each student receives a printed copy and a recording as a keepsake.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= FINAL CTA ============= -->
+    <section class="final-cta final-cta--b2b" id="final-cta">
+      <div class="container">
+        <h2>Your venue. Your students. <em>One original musical. Six days.</em></h2>
+        <p>2027 host calendar is filling. Inquire now to secure your dates.</p>
+        <a class="btn btn-primary" href="#inquire">Inquire About Hosting</a>
+        <p class="final-cta__secondary">Want the details first? <a href="mailto:brian@feinlineacademy.com?subject=SHINE%20host%20information%20packet">Download the host information packet (PDF) →</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============= FOOTER ============= -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">
+            <img src="assets/feinline-logo.png" alt="FeinLine Academy" />
+            <strong>SHINE</strong>
+          </div>
+          <p style="margin:0; max-width:36ch;">A turnkey musical theatre creation intensive, licensed to venues, schools, and arts organizations. Premiered at the Broward Center for the Performing Arts.</p>
+          <div class="footer__social" style="margin-top:1rem;">
+            <a href="#" aria-label="Instagram">
+              <img src="assets/instagram.svg" alt="" />
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:brian@feinlineacademy.com">brian@feinlineacademy.com</a></li>
+            <li><span class="placeholder">[phone]</span></li>
+            <li><a href="#inquire">Inquire about hosting</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Program</h4>
+          <ul>
+            <li><a href="#how-it-works">A typical host week</a></li>
+            <li><a href="#case-study">Broward Center case study</a></li>
+            <li><a href="#meet-brian">Meet Brian</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Refund Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 FeinLine Academy · A FeinLine Academy program</span>
+        <span>Made with care in <span class="placeholder">[City]</span>.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============= LIGHTBOX ============= -->
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lightbox__close" aria-label="Close image viewer">×</button>
+    <button class="lightbox__btn lightbox__btn--prev" aria-label="Previous image">‹</button>
+    <img class="lightbox__img" alt="" />
+    <button class="lightbox__btn lightbox__btn--next" aria-label="Next image">›</button>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    /* --- Inquiry form submit (no backend) ---------------- */
+    (function () {
+      var form = document.getElementById('inquiry-form');
+      var success = document.getElementById('inquiry-success');
+      if (!form || !success) return;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var required = ['if-name', 'if-org', 'if-email'];
+        var ok = true;
+        required.forEach(function (id) {
+          var el = document.getElementById(id);
+          if (!el.value.trim()) { el.style.borderColor = '#e88a8a'; ok = false; }
+          else { el.style.borderColor = ''; }
+        });
+        if (!ok) return;
+        form.style.display = 'none';
+        success.classList.add('is-open');
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    })();
+  </script>
+</body>
+</html>

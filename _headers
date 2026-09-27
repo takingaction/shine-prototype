@@ -1,0 +1,8 @@
+# Cache-Control: HTML short, assets long.
+# Cloudflare Pages applies these rules to matching paths.
+
+/
+  Cache-Control: public, max-age=3600
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
