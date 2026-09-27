@@ -132,7 +132,10 @@
         sendCommand('getCurrentTime');
         sendCommand('getVolume');
         sendCommand('loadModule', ['captions']);
-      }, 300);
+        // After loading captions module, explicitly query the tracklist.
+        // YouTube only pushes infoDelivery for things you ask for via getOption.
+        sendCommand('getOption', ['captions', 'tracklist']);
+      }, 400);
       return iframe;
     };
 
@@ -251,8 +254,18 @@
         muteBtn.setAttribute('aria-pressed', muted ? 'true' : 'false');
         muteBtn.setAttribute('aria-label', muted ? 'Unmute' : 'Mute');
       }
+      // YouTube can return the tracklist as an array on info or as a nested
+      // option object. Handle both shapes; default to keeping the button visible.
+      let tracklist = null;
       if (Array.isArray(info.captionsTracklist)) {
-        ccBtn.hidden = info.captionsTracklist.length === 0;
+        tracklist = info.captionsTracklist;
+      } else if (info.options && Array.isArray(info.options.captionsTracklist)) {
+        tracklist = info.options.captionsTracklist;
+      } else if (Array.isArray(info.tracklist)) {
+        tracklist = info.tracklist;
+      }
+      if (tracklist !== null) {
+        ccBtn.hidden = tracklist.length === 0;
       }
     });
   }
