@@ -62,21 +62,38 @@
     io.observe(hero);
   }
 
-  /* --- Video facade (play/pause via YouTube API) ---- */
+  /* --- Video facade (play/pause/seek/volume/CC) ----- */
   const videoFacade = document.querySelector('.video__facade');
   if (videoFacade) {
     const toggleBtn = videoFacade.querySelector('.video__toggle');
+    const progress = videoFacade.querySelector('.video__progress');
+    const seekEl = videoFacade.querySelector('.video__seek');
+    const currentTimeEl = videoFacade.querySelector('.video__time--current');
+    const durationEl = videoFacade.querySelector('.video__time--duration');
+    const muteBtn = videoFacade.querySelector('.video__mute');
+    const volumeEl = videoFacade.querySelector('.video__volume');
+    const ccBtn = videoFacade.querySelector('.video__cc');
     const id = videoFacade.dataset.youtubeId || 'dQw4w9WgXcQ';
     const title = videoFacade.dataset.videoTitle || 'SHINE: A Musical Theatre Creation Intensive';
     let iframe = null;
     let isPlaying = false;
+    let duration = 0;
+    let currentTime = 0;
+    let pollId = null;
 
-    const sendCommand = (func) => {
+    const sendCommand = (func, args = []) => {
       if (!iframe || !iframe.contentWindow) return;
       iframe.contentWindow.postMessage(
-        JSON.stringify({ event: 'command', func, args: [] }),
+        JSON.stringify({ event: 'command', func, args }),
         '*'
       );
+    };
+
+    const formatTime = (s) => {
+      s = Math.max(0, Math.floor(s || 0));
+      const m = Math.floor(s / 60);
+      const sec = s % 60;
+      return m + ':' + (sec < 10 ? '0' + sec : sec);
     };
 
     const setPlaying = (state) => {
@@ -85,19 +102,37 @@
       toggleBtn.setAttribute('aria-label', state ? 'Pause video' : 'Play video');
     };
 
+    const updateSeekUI = () => {
+      if (duration > 0) {
+        seekEl.value = ((currentTime / duration) * 100).toFixed(2);
+        seekEl.max = 100;
+      } else {
+        seekEl.value = 0;
+      }
+      currentTimeEl.textContent = formatTime(currentTime);
+      durationEl.textContent = formatTime(duration);
+    };
+
     const ensureIframe = () => {
       if (iframe) return iframe;
       Array.from(videoFacade.children).forEach((child) => {
-        if (child !== toggleBtn && child.tagName !== 'IFRAME') {
+        if (child !== toggleBtn && child !== progress && child.tagName !== 'IFRAME') {
           child.style.display = 'none';
         }
       });
       iframe = document.createElement('iframe');
-      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&enablejsapi=1&rel=0&modestbranding=1`;
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&enablejsapi=1&rel=0&modestbranding=1&controls=0&disablekb=1&cc_load_policy=1`;
       iframe.title = title;
       iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
       iframe.setAttribute('allowfullscreen', '');
       videoFacade.appendChild(iframe);
+      progress.hidden = false;
+      setTimeout(() => {
+        sendCommand('getDuration');
+        sendCommand('getCurrentTime');
+        sendCommand('getVolume');
+        sendCommand('loadModule', ['captions']);
+      }, 300);
       return iframe;
     };
 
@@ -105,11 +140,13 @@
       if (!iframe) ensureIframe();
       else sendCommand('playVideo');
       setPlaying(true);
+      startPolling();
     };
 
     const pause = () => {
       if (iframe) sendCommand('pauseVideo');
       setPlaying(false);
+      stopPolling();
     };
 
     const toggle = () => {
@@ -117,37 +154,106 @@
       else play();
     };
 
-    videoFacade.addEventListener('click', (e) => {
-      if (e.target.closest('.video__toggle')) {
-        toggle();
+    const poll = () => {
+      if (!iframe) return;
+      sendCommand('getCurrentTime');
+    };
+    const startPolling = () => {
+      if (pollId) return;
+      pollId = setInterval(() => { if (isPlaying) poll(); }, 500);
+    };
+    const stopPolling = () => {
+      if (pollId) { clearInterval(pollId); pollId = null; }
+    };
+
+    seekEl.addEventListener('input', () => {
+      if (!duration) return;
+      const t = (parseFloat(seekEl.value) / 100) * duration;
+      sendCommand('seekTo', [t, true]);
+      currentTime = t;
+      updateSeekUI();
+    });
+
+    volumeEl.addEventListener('input', () => {
+      const v = parseInt(volumeEl.value, 10);
+      sendCommand('setVolume', [v]);
+      const muted = v === 0;
+      videoFacade.classList.toggle('is-muted', muted);
+      muteBtn.setAttribute('aria-pressed', muted ? 'true' : 'false');
+      muteBtn.setAttribute('aria-label', muted ? 'Unmute' : 'Mute');
+    });
+
+    muteBtn.addEventListener('click', () => {
+      const currentlyMuted = videoFacade.classList.contains('is-muted');
+      if (currentlyMuted) {
+        sendCommand('unMute');
+        videoFacade.classList.remove('is-muted');
+        muteBtn.setAttribute('aria-pressed', 'false');
+        muteBtn.setAttribute('aria-label', 'Mute');
+        if (parseInt(volumeEl.value, 10) === 0) volumeEl.value = 50;
+        sendCommand('setVolume', [parseInt(volumeEl.value, 10)]);
       } else {
-        toggle();
+        sendCommand('mute');
+        videoFacade.classList.add('is-muted');
+        muteBtn.setAttribute('aria-pressed', 'true');
+        muteBtn.setAttribute('aria-label', 'Unmute');
       }
+    });
+
+    ccBtn.addEventListener('click', () => {
+      const isOn = ccBtn.classList.contains('is-active');
+      if (isOn) {
+        sendCommand('setOption', ['captions', 'track', {}]);
+        ccBtn.classList.remove('is-active');
+        ccBtn.setAttribute('aria-pressed', 'false');
+      } else {
+        sendCommand('setOption', ['captions', 'track', { languageCode: 'en' }]);
+        ccBtn.classList.add('is-active');
+        ccBtn.setAttribute('aria-pressed', 'true');
+      }
+    });
+
+    videoFacade.addEventListener('click', (e) => {
+      if (e.target.closest('.video__toggle')) { toggle(); return; }
+      if (e.target.closest('.video__progress')) return;
+      toggle();
     });
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && videoFacade.classList.contains('is-playing')) {
-        pause();
+      if (!videoFacade.classList.contains('is-playing')) return;
+      if (e.key === 'Escape') { e.preventDefault(); pause(); }
+      if (e.key === ' ' && document.activeElement === videoFacade) { e.preventDefault(); toggle(); }
+      if (e.key === 'ArrowLeft' && duration) {
+        sendCommand('seekTo', [Math.max(0, currentTime - 5), true]);
       }
-      if (e.key === ' ' && videoFacade.classList.contains('is-playing') && document.activeElement === videoFacade) {
-        e.preventDefault();
-        toggle();
+      if (e.key === 'ArrowRight' && duration) {
+        sendCommand('seekTo', [Math.min(duration, currentTime + 5), true]);
       }
     });
 
-    /* Listen for YouTube iframe state updates to keep our button in sync
-       with what the user does via YouTube's own native controls. */
     window.addEventListener('message', (e) => {
       if (!iframe || e.source !== iframe.contentWindow) return;
-      try {
-        const data = JSON.parse(e.data);
-        if (data.event === 'infoDelivery' && data.info) {
-          const state = data.info.playerState;
-          // 1 = playing, 2 = paused, 0 = ended, 3 = buffering, 5 = cued
-          if (state === 1) setPlaying(true);
-          else if (state === 2 || state === 0) setPlaying(false);
-        }
-      } catch (_) {}
+      let data;
+      try { data = JSON.parse(e.data); } catch (_) { return; }
+      if (data.event !== 'infoDelivery' || !data.info) return;
+      const info = data.info;
+      if (typeof info.playerState === 'number') {
+        // 1 = playing, 2 = paused, 0 = ended, 3 = buffering, 5 = cued
+        if (info.playerState === 1) { setPlaying(true); startPolling(); }
+        else if (info.playerState === 2 || info.playerState === 0) { setPlaying(false); stopPolling(); }
+      }
+      if (typeof info.currentTime === 'number') { currentTime = info.currentTime; updateSeekUI(); }
+      if (typeof info.duration === 'number') { duration = info.duration; updateSeekUI(); }
+      if (typeof info.volume === 'number') {
+        volumeEl.value = info.volume;
+        const muted = info.muted === true || info.volume === 0;
+        videoFacade.classList.toggle('is-muted', muted);
+        muteBtn.setAttribute('aria-pressed', muted ? 'true' : 'false');
+        muteBtn.setAttribute('aria-label', muted ? 'Unmute' : 'Mute');
+      }
+      if (Array.isArray(info.captionsTracklist)) {
+        ccBtn.hidden = info.captionsTracklist.length === 0;
+      }
     });
   }
 

@@ -638,6 +638,161 @@ body.mobile-cta-visible { padding-bottom: 80px; }
 .video__facade.is-playing .video__toggle-icon--play { display: none; }
 .video__facade.is-playing .video__toggle-icon--pause { display: block; }
 
+/* Progress / seek / volume / CC bar at the bottom of the facade */
+.video__progress {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  right: 0.75rem;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(6, 9, 26, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.video__facade.is-playing .video__progress,
+.video__progress[style*="display: flex"],
+.video__progress:not([hidden]) {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.video__time {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  font-variant-numeric: tabular-nums;
+  min-width: 2.6em;
+  text-align: center;
+}
+
+/* Shared range input styling (seek + volume) */
+.video__seek,
+.video__volume {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  height: 18px;
+  margin: 0;
+  cursor: pointer;
+}
+.video__seek { flex: 1; min-width: 80px; }
+.video__volume { width: 80px; flex: 0 0 80px; }
+@media (max-width: 600px) {
+  .video__volume { width: 56px; flex: 0 0 56px; }
+}
+
+/* WebKit track + thumb */
+.video__seek::-webkit-slider-runnable-track,
+.video__volume::-webkit-slider-runnable-track {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 2px;
+}
+.video__seek::-webkit-slider-thumb,
+.video__volume::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: none;
+  margin-top: -5px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
+  transition: transform 120ms ease;
+}
+.video__seek:hover::-webkit-slider-thumb,
+.video__volume:hover::-webkit-slider-thumb,
+.video__seek:focus-visible::-webkit-slider-thumb,
+.video__volume:focus-visible::-webkit-slider-thumb {
+  transform: scale(1.15);
+}
+
+/* Firefox track + thumb */
+.video__seek::-moz-range-track,
+.video__volume::-moz-range-track {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 2px;
+}
+.video__seek::-moz-range-thumb,
+.video__volume::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: none;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
+  transition: transform 120ms ease;
+}
+.video__seek:hover::-moz-range-thumb,
+.video__volume:hover::-moz-range-thumb { transform: scale(1.15); }
+
+/* Mute button */
+.video__mute {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: var(--ink);
+  padding: 0;
+  transition: color 120ms ease, border-color 120ms ease, background 120ms ease;
+  flex: 0 0 32px;
+}
+.video__mute:hover,
+.video__mute:focus-visible {
+  color: var(--gold);
+  border-color: var(--gold);
+  background: rgba(232, 200, 74, 0.08);
+  outline: none;
+}
+.video__mute-icon {
+  width: 16px;
+  height: 16px;
+}
+.video__mute-icon--off { display: none; }
+.video__facade.is-muted .video__mute-icon--on { display: none; }
+.video__facade.is-muted .video__mute-icon--off { display: block; }
+
+/* CC button */
+.video__cc {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0.55rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 120ms ease, border-color 120ms ease, background 120ms ease;
+  flex: 0 0 auto;
+}
+.video__cc:hover,
+.video__cc:focus-visible {
+  color: var(--gold);
+  border-color: var(--gold);
+  outline: none;
+}
+.video__cc.is-active {
+  color: var(--gold);
+  border-color: var(--gold);
+  background: rgba(232, 200, 74, 0.12);
+}
+
 .video__cta-wrap { text-align: center; margin-top: 2rem; }
 
 /* =========================================================
