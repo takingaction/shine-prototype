@@ -1637,87 +1637,6 @@ body.mobile-cta-visible { padding-bottom: 80px; }
 }
 
 /* =========================================================
-   Light sections: How It Works, Testimonials, FAQ
-   Cream background, dark navy text, soft shadows on cards.
-   ========================================================= */
-
-/* --- How It Works (#how-it-works) ---------------------- */
-#how-it-works {
-  background: var(--bg-light);
-  color: var(--ink-on-light);
-}
-#how-it-works .section__head h2 { color: var(--ink-on-light); }
-#how-it-works .section__eyebrow { color: var(--ink-on-light); }
-#how-it-works .section__lead { color: var(--ink-muted-on-light); }
-#how-it-works .day {
-  background: var(--bg-alt);
-  border: 1px solid var(--rule);
-  color: var(--ink);
-}
-#how-it-works .day:hover {
-  border-color: var(--gold);
-  background: var(--bg-alt);
-}
-#how-it-works .day h3 { color: var(--ink); }
-#how-it-works .day p { color: var(--ink-muted); }
-#how-it-works .day p strong { color: var(--ink); }
-#how-it-works .timeline__hours { color: var(--ink-muted-on-light); }
-#how-it-works .timeline__hours strong,
-#how-it-works .timeline__hours .placeholder {
-  color: inherit;
-  font-weight: inherit;
-  border-bottom: none;
-  cursor: inherit;
-  padding-bottom: 0;
-}
-
-/* --- Testimonials (#testimonials) ----------------------- */
-#testimonials {
-  background: var(--bg-light);
-  color: var(--ink-on-light);
-}
-#testimonials .section__head h2 { color: var(--ink-on-light); }
-#testimonials .section__eyebrow { color: var(--ink-on-light); }
-#testimonials .quote {
-  background: var(--bg-alt);
-  border: 1px solid var(--rule);
-  color: var(--ink);
-}
-#testimonials .quote--accent {
-  background: linear-gradient(180deg, rgba(232,200,74,0.10), rgba(232,200,74,0.02));
-  border-color: rgba(232,200,74,0.45);
-}
-#testimonials .quote__body { color: var(--ink); }
-#testimonials .quote__cite { color: var(--ink-muted); }
-#testimonials .quote__cite strong { color: var(--ink); }
-#testimonials .stats {
-  background: var(--bg-alt);
-  border: 1px solid var(--rule);
-}
-#testimonials .stat__label { color: var(--ink-muted); }
-
-/* --- FAQ (#faq) ---------------------------------------- */
-#faq {
-  background: var(--bg-light);
-  color: var(--ink-on-light);
-}
-#faq .section__head h2 { color: var(--ink-on-light); }
-#faq .section__eyebrow { color: var(--ink-on-light); }
-#faq details {
-  background: #ffffff;
-  border: 1px solid var(--rule-on-light);
-  box-shadow: var(--shadow-on-light);
-  color: var(--ink-on-light);
-}
-#faq details[open] {
-  border-color: rgba(232,200,74,0.45);
-  box-shadow: var(--shadow-on-light);
-}
-#faq summary { color: var(--ink-on-light); }
-#faq summary:hover { color: var(--gold-deep); }
-#faq .faq__answer { color: var(--ink-muted-on-light); }
-
-/* =========================================================
    Phase 1 restructure: new components
    ========================================================= */
 
@@ -1772,16 +1691,6 @@ body.mobile-cta-visible { padding-bottom: 80px; }
   padding: 0.4rem 0.9rem;
   font-size: 0.92rem;
 }
-
-/* --- How it works (cream section): dark split cards ---- */
-#how-it-works .split__col {
-  background: var(--bg-alt);
-  border: 1px solid var(--rule);
-  color: var(--ink);
-}
-#how-it-works .split__col ul { color: var(--ink-muted); }
-#how-it-works .split__col--we { border-color: rgba(232,200,74,0.35); }
-.split__you { color: var(--accent) !important; }
 
 /* Condensed 6-step timeline */
 .steps {
@@ -1903,3 +1812,240 @@ body.mobile-cta-visible { padding-bottom: 80px; }
   .packet__btn { width: 100%; }
 }
 .final-cta--b2b p.packet__success { margin: 0.75rem auto 0; color: var(--gold); }
+
+/* =========================================================
+   BRAND REFRESH
+   Light-dominant page, navy anchors, gold reserved for CTAs.
+   Tokens are re-scoped per section so existing components
+   flip automatically between light and dark contexts.
+   ========================================================= */
+
+:root {
+  --navy:        #13204a;
+  --navy-2:      #1c2c60;   /* cards inside navy sections */
+  --brand:       #0a4a8a;   /* sampled from the SHINE logo */
+  --brand-light: #9cc2ff;   /* brand accent on navy */
+  --cream:       #faf7f0;
+  --cta:         #e8c84a;
+  --cta-hover:   #f5d860;
+  --rainbow: linear-gradient(90deg, #e63a2e 0%, #f39a1e 30%, #f6d23a 60%, #3fc1c9 100%);
+  --shadow-card: 0 1px 2px rgba(19,32,74,0.06), 0 8px 24px -12px rgba(19,32,74,0.22);
+
+  /* Dark defaults (hero, nav, results, final CTA, footer) */
+  --bg:     var(--navy);
+  --bg-alt: var(--navy-2);
+  --gold:   var(--brand-light);          /* non-CTA accent on dark */
+  --gold-soft: rgba(156,194,255,0.14);
+
+  --font-display: "Montserrat", "Inter", system-ui, sans-serif;
+}
+
+/* Light section scopes */
+.section--light,
+.section--white {
+  --ink:          #1a1d2e;
+  --ink-muted:    #4f5469;
+  --ink-dim:      #7a7f94;
+  --rule:         rgba(19,32,74,0.10);
+  --rule-strong:  rgba(19,32,74,0.22);
+  --gold:         var(--brand);
+  --gold-soft:    rgba(10,74,138,0.08);
+  --accent:       var(--brand);
+  color: var(--ink);
+}
+.section--light { background: var(--cream); }
+.section--white { background: #ffffff; }
+
+/* Keep video controls dark even inside a light section */
+.video__facade {
+  --ink: #eef0f7;
+  --ink-muted: #c3c8da;
+  --rule: rgba(255,255,255,0.15);
+  --rule-strong: rgba(255,255,255,0.3);
+  --gold: var(--brand-light);
+}
+
+/* --- Typography ---------------------------------------- */
+h1, h2, h3, .nav__brand, .stat__num, .case__stat-num {
+  font-family: var(--font-display);
+}
+h1, h2 { font-weight: 800; letter-spacing: -0.02em; }
+h3 { font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: clamp(2rem, 3.6vw, 2.8rem); }
+.section__lead, .case__narrative, .brian__bio, .hero__sub { max-width: 68ch; }
+.section__head .section__lead { margin-left: auto; margin-right: auto; }
+
+/* Rainbow underline under eyebrows (from the logo swoosh) */
+.section__eyebrow::after,
+.case__eyebrow::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  margin: 0.55rem auto 0;
+  border-radius: 2px;
+  background: var(--rainbow);
+}
+.inquire__side .section__eyebrow::after,
+.case__eyebrow::after { margin-left: 0; }
+
+/* --- Buttons: gold means "click here" ------------------ */
+.btn-primary,
+.nav__links a.nav__cta {
+  background: var(--cta);
+  color: var(--navy);
+  box-shadow: 0 10px 24px -12px rgba(232,200,74,0.7);
+}
+.btn-primary:hover,
+.btn-primary:focus-visible,
+.nav__links a.nav__cta:hover,
+.nav__links a.nav__cta:focus-visible {
+  background: var(--cta-hover);
+  color: var(--navy);
+}
+.section--light .btn-ghost,
+.section--white .btn-ghost {
+  color: var(--navy);
+  border-color: var(--navy);
+}
+.section--light .btn-ghost:hover,
+.section--white .btn-ghost:hover,
+.section--light .btn-ghost:focus-visible,
+.section--white .btn-ghost:focus-visible {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+}
+.hero__ctas .btn-ghost:hover,
+.hero__ctas .btn-ghost:focus-visible,
+.final-cta__buttons .btn-ghost:hover,
+.final-cta__buttons .btn-ghost:focus-visible {
+  background: #fff;
+  color: var(--navy);
+  border-color: #fff;
+}
+.video__play { border-color: var(--cta); }
+.video__play svg { color: var(--cta); }
+
+/* --- Announcement bar + nav ---------------------------- */
+.announcement-bar { background: var(--brand); color: #fff; }
+.announcement-bar a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.nav { background: rgba(19,32,74,0.88); }
+.nav.scrolled { background: rgba(19,32,74,0.97); }
+.nav__links a { color: #d6dbea; }
+.nav__links a:hover { color: #fff; }
+
+/* --- Hero: brighter photo, left-side text gradient ----- */
+.hero__bg img { opacity: 1; object-position: center 35%; }
+.hero__overlay {
+  background: linear-gradient(90deg,
+    rgba(19,32,74,0.94) 0%,
+    rgba(19,32,74,0.82) 40%,
+    rgba(19,32,74,0.35) 75%,
+    rgba(19,32,74,0.20) 100%);
+}
+@media (max-width: 900px) {
+  .hero__overlay {
+    background: linear-gradient(180deg, rgba(19,32,74,0.80) 0%, rgba(19,32,74,0.92) 100%);
+  }
+}
+.hero__micro { color: #c9cfe2; }
+.hero__proof { border-color: rgba(255,255,255,0.25); background: rgba(19,32,74,0.85); }
+.hero__proof:hover { border-color: #fff; }
+
+/* --- Credibility strip (white with rainbow rule) ------- */
+.credibility {
+  position: relative;
+  border-top: 0;
+  border-bottom: 1px solid var(--rule);
+}
+.credibility::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--rainbow);
+}
+.section--white .credibility__chip,
+.section--light .credibility__chip {
+  background: var(--cream);
+  border-color: var(--rule);
+  color: var(--ink-muted);
+}
+
+/* --- Unified white cards in light sections ------------- */
+.section--light :is(.outcome, .fit__list, .quote, .staff, .split__col, .step,
+  .student-gains, .family-callout, .stats, .inquire__brian, .form),
+.section--light .faq details,
+.section--white :is(.outcome, .fit__list, .quote, .staff, .split__col, .step,
+  .student-gains, .family-callout, .stats, .inquire__brian, .form),
+.section--white .faq details {
+  background: #ffffff;
+  border: 1px solid var(--rule);
+  box-shadow: var(--shadow-card);
+  color: var(--ink);
+}
+.section--light .step,
+.section--white .step { padding-bottom: 1.2rem; }
+.split__col--we { border-top: 4px solid var(--brand) !important; }
+.split__you { color: var(--navy) !important; }
+.section--light .faq details[open],
+.section--white .faq details[open] { border-color: var(--brand); }
+.section--light .brian__creds li,
+.section--white .brian__creds li {
+  background: var(--cream);
+  border-color: var(--rule);
+  color: var(--ink-muted);
+}
+.student-gains__list li {
+  background: var(--gold-soft);
+  border-color: var(--rule);
+  color: var(--ink);
+}
+.family-callout h3 { color: var(--brand); }
+
+/* --- Inquire section ----------------------------------- */
+.program {
+  background: none;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+.section--white .form { border-top: 4px solid var(--navy); }
+.section--white .form__input,
+.section--white .form__select,
+.section--white .form__textarea {
+  background: #fff;
+  border: 1px solid var(--rule-strong);
+  color: var(--ink);
+}
+.section--white .form__input:focus,
+.section--white .form__select:focus,
+.section--white .form__textarea:focus {
+  border-color: var(--brand);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(10,74,138,0.15);
+}
+.section--white .form__input::placeholder { color: var(--ink-dim); }
+.section--white .form__success {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-top: 4px solid var(--brand);
+  box-shadow: var(--shadow-card);
+  color: var(--ink);
+}
+.section--white .form__success h3 { color: var(--brand); }
+.form__error { color: #b42318; }
+
+/* --- Navy anchor sections ------------------------------ */
+.case { background: var(--navy); }
+.final-cta--b2b {
+  background:
+    linear-gradient(180deg, rgba(19,32,74,0.86), rgba(19,32,74,0.95)),
+    url("assets/gallery-cast-bow.jpg") center / cover no-repeat;
+}
+.footer { background: var(--navy); }
+
+/* Consistent image radius */
+.step img, .brian__photo, .staff__photo, .case__photo, .gallery__item { border-radius: var(--r-md); }
+.step img { border-radius: 0; }
