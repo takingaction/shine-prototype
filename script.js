@@ -351,6 +351,97 @@
     });
   }
 
+  /* --- Forms: inquiry + host packet ----------------------
+     Posts to Formspree once a real form ID replaces YOUR_FORM_ID
+     in the form's action. Until then, falls back to opening a
+     pre-filled email to Brian so no lead is ever lost. */
+  const LEAD_EMAIL = 'brian@feinlineacademy.com';
+
+  const endpointReady = (form) =>
+    form.action && form.action.indexOf('YOUR_FORM_ID') === -1;
+
+  const validate = (form) => {
+    let ok = true;
+    form.querySelectorAll('[required]').forEach((el) => {
+      const bad = !el.value.trim() || (el.type === 'email' && !/^\S+@\S+\.\S+$/.test(el.value));
+      el.style.borderColor = bad ? '#e88a8a' : '';
+      if (bad) ok = false;
+    });
+    return ok;
+  };
+
+  const mailtoFallback = (form) => {
+    const data = new FormData(form);
+    const subject = data.get('_subject') || 'SHINE inquiry';
+    const lines = [];
+    data.forEach((v, k) => {
+      if (k.charAt(0) === '_' || !String(v).trim()) return;
+      lines.push(k.charAt(0).toUpperCase() + k.slice(1) + ': ' + v);
+    });
+    window.location.href = 'mailto:' + LEAD_EMAIL +
+      '?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(lines.join('\n'));
+  };
+
+  const submitLead = async (form) => {
+    if (!endpointReady(form)) { mailtoFallback(form); return true; }
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+      return res.ok;
+    } catch (_) {
+      return false;
+    }
+  };
+
+  const showError = (form, msg) => {
+    let err = form.querySelector('.form__error');
+    if (!err) {
+      err = document.createElement('p');
+      err.className = 'form__error';
+      form.appendChild(err);
+    }
+    err.textContent = msg;
+  };
+
+  const inquiryForm = document.getElementById('inquiry-form');
+  const inquirySuccess = document.getElementById('inquiry-success');
+  if (inquiryForm && inquirySuccess) {
+    inquiryForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!validate(inquiryForm)) return;
+      const btn = inquiryForm.querySelector('[type="submit"]');
+      btn.disabled = true;
+      const ok = await submitLead(inquiryForm);
+      btn.disabled = false;
+      if (!ok) {
+        showError(inquiryForm, 'Something went wrong. Please email ' + LEAD_EMAIL + ' directly.');
+        return;
+      }
+      inquiryForm.hidden = true;
+      inquirySuccess.classList.add('is-open');
+      inquirySuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
+
+  const packetForm = document.getElementById('packet-form');
+  if (packetForm) {
+    packetForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!validate(packetForm)) return;
+      const ok = await submitLead(packetForm);
+      if (!ok) {
+        showError(packetForm, 'Something went wrong. Please email ' + LEAD_EMAIL + ' directly.');
+        return;
+      }
+      packetForm.querySelector('.packet__row').hidden = true;
+      packetForm.querySelector('.packet__success').hidden = false;
+    });
+  }
+
   /* --- Smooth scroll with sticky nav offset (fallback) - */
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener('click', (e) => {
