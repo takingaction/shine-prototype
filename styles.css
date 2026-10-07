@@ -2326,31 +2326,33 @@ h2 { font-size: clamp(2.25rem, 4vw, 3.1rem); }
 @media (max-width: 860px) { .nav__brand img { height: 34px; } }
 
 /* =========================================================
-   Hero proof card: animated gold border (travelling sparkle)
+   Reusable animated gold frame (travelling sparkle)
+   Used by hero proof card, hero stamp, and posters.
    ========================================================= */
-@property --proof-angle {
+@property --frame-angle {
   syntax: "<angle>";
   initial-value: 0deg;
   inherits: false;
 }
-.hero__proof {
-  --proof-angle: 0deg;
+.gold-frame {
+  --frame-angle: 0deg;
+  --frame-fill: rgba(15,26,61,0.92);
   border: 3px solid transparent;
   background:
-    linear-gradient(rgba(15,26,61,0.92), rgba(15,26,61,0.92)) padding-box,
-    conic-gradient(from var(--proof-angle),
+    linear-gradient(var(--frame-fill), var(--frame-fill)) padding-box,
+    conic-gradient(from var(--frame-angle),
       #8a6514 0deg, #d9ab2e 60deg, #f0cf5c 140deg,
       #fff6d6 165deg, #f0cf5c 190deg, #d9ab2e 260deg, #8a6514 360deg) border-box;
   box-shadow: 0 0 28px -6px rgba(226,184,68,0.45), var(--shadow-lg);
-  animation: proof-spin 8s linear infinite;
+  animation: frame-spin 8s linear infinite;
 }
-.hero__proof:hover {
+a.gold-frame:hover {
   border-color: transparent;
   box-shadow: 0 0 40px -4px rgba(226,184,68,0.65), var(--shadow-lg);
 }
-@keyframes proof-spin { to { --proof-angle: 360deg; } }
+@keyframes frame-spin { to { --frame-angle: 360deg; } }
 @media (prefers-reduced-motion: reduce) {
-  .hero__proof { animation: none; }
+  .gold-frame { animation: none; }
 }
 
 /* Keep the performer's face in frame wherever this portrait is cropped */
@@ -2427,3 +2429,121 @@ img[src$="day-6-solo.jpg"] { object-position: center 18%; }
 .footer__fa-blurb { max-width: 60ch; }
 @media (max-width: 900px) { .footer__grid { grid-template-columns: 1fr 1fr; } .footer__fa { grid-column: 1 / -1; } }
 @media (max-width: 560px) { .footer__grid { grid-template-columns: 1fr; } }
+
+/* =========================================================
+   Nav wordmark, hero stamp, posters
+   ========================================================= */
+.nav__wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.9rem;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  background: var(--gold-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@media (max-width: 860px) { .nav__wordmark { font-size: 1.6rem; } }
+
+/* Hero stamp */
+.hero__panel { position: relative; }
+.hero__stamp {
+  position: absolute;
+  top: -42px;
+  left: -42px;
+  z-index: 3;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  transform: rotate(5deg);
+  box-shadow: 0 0 24px -4px rgba(226,184,68,0.55), 0 14px 30px -8px rgba(0,0,0,0.55);
+  transition: transform 300ms ease;
+}
+.hero__stamp img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.hero__panel:hover .hero__stamp { transform: rotate(0deg) scale(1.05); }
+@media (max-width: 1100px) { .hero__stamp { width: 120px; height: 120px; top: -32px; left: -28px; } }
+@media (max-width: 900px) { .hero__stamp { width: 96px; height: 96px; top: -28px; left: auto; right: -8px; } }
+
+/* Posters */
+.poster {
+  border-radius: 20px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 520px;
+  aspect-ratio: 1 / 1;
+}
+.poster img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 17px; }
+
+/* Poster band */
+.poster-band {
+  position: relative;
+  isolation: isolate;
+  padding: 5rem 0;
+  color: #eef0f7;
+  background:
+    radial-gradient(55% 60% at 25% 50%, rgba(255,214,140,0.16), transparent 70%),
+    var(--navy);
+}
+.poster-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1.2px 1.2px at 12% 18%, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1px 1px at 28% 72%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1.4px 1.4px at 46% 30%, rgba(255,236,170,0.9), transparent),
+    radial-gradient(1px 1px at 63% 84%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1.2px 1.2px at 78% 22%, rgba(255,255,255,0.85), transparent),
+    radial-gradient(1px 1px at 88% 58%, rgba(255,236,170,0.8), transparent);
+  background-size: 520px 420px;
+  opacity: 0.28;
+  animation: twinkle 6s ease-in-out infinite alternate;
+}
+.poster-band__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 520px) minmax(0, 1fr);
+  gap: 4rem;
+  align-items: center;
+}
+.poster-band__copy h2 { color: #fff; margin: 0 0 1rem; }
+.poster-band__copy p { color: #c9cfe2; font-size: 1.15rem; margin: 0 0 2rem; max-width: 46ch; }
+.poster-band .section__eyebrow { color: #9cc2ff; }
+.poster-band .section__eyebrow::after { margin-left: 0; }
+@media (max-width: 900px) {
+  .poster-band { padding: 3.5rem 0; }
+  .poster-band__inner { grid-template-columns: 1fr; gap: 2.25rem; text-align: center; }
+  .poster-band .poster { max-width: 320px; margin: 0 auto; }
+  .poster-band__copy p { margin-left: auto; margin-right: auto; }
+  .poster-band .section__eyebrow::after { margin-left: auto; }
+}
+
+/* Final CTA two columns */
+.final-cta__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 520px) minmax(0, 1fr);
+  gap: 4rem;
+  align-items: center;
+  text-align: left;
+}
+.final-cta__grid .final-cta__copy h2,
+.final-cta__grid .final-cta__copy > p { margin-left: 0; margin-right: 0; }
+.final-cta__grid .final-cta__buttons { justify-content: flex-start; }
+.final-cta__grid .packet { margin-left: 0; margin-right: 0; text-align: left; }
+@media (max-width: 900px) {
+  .final-cta__grid { grid-template-columns: 1fr; gap: 2.25rem; text-align: center; }
+  .final-cta__grid .poster { max-width: 320px; margin: 0 auto; }
+  .final-cta__grid .final-cta__copy h2,
+  .final-cta__grid .final-cta__copy > p { margin-left: auto; margin-right: auto; }
+  .final-cta__grid .final-cta__buttons { justify-content: center; }
+  .final-cta__grid .packet { margin-left: auto; margin-right: auto; text-align: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .poster-band::before { animation: none; }
+  .hero__stamp { transition: none; }
+}

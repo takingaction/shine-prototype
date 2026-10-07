@@ -51,7 +51,7 @@
   <header class="nav" role="banner">
     <div class="container nav__inner">
       <a href="#" class="nav__brand" aria-label="SHINE home">
-        <img src="assets/shine-logo-nav.png" alt="SHINE" width="147" height="40" />
+        <span class="nav__wordmark">SHINE</span>
       </a>
       <button class="nav__toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">☰</button>
       <ul id="primary-nav" class="nav__links">
@@ -94,7 +94,10 @@
         </div>
 
         <aside class="hero__panel" aria-label="Proof">
-          <a class="hero__proof" href="#case-study">
+          <div class="hero__stamp gold-frame gold-frame--round" aria-hidden="true">
+            <img src="assets/shine-full-circle.jpg" alt="" width="160" height="160" />
+          </div>
+          <a class="hero__proof gold-frame" href="#case-study">
             <img src="assets/gallery-cast-pose.jpg" alt="SHINE ensemble on the Broward Center stage" />
             <div class="hero__proof-text">
               <span class="hero__proof-label">Premiered Summer 2026</span>
@@ -221,6 +224,21 @@
       </div>
     </section>
 
+    <!-- ============= POSTER BAND ============= -->
+    <section class="poster-band" id="premiere">
+      <div class="container poster-band__inner">
+        <div class="poster gold-frame">
+          <img src="assets/shine-full.jpg" alt="SHINE: A Musical Theatre Creation Intensive key art" width="520" height="520" loading="lazy" />
+        </div>
+        <div class="poster-band__copy">
+          <div class="section__eyebrow">Your premiere, fully branded</div>
+          <h2>Every cohort ends with a world premiere on your stage.</h2>
+          <p>Hosts receive show-branded key art, posters, and a marketing toolkit to fill the house.</p>
+          <a class="btn btn-primary" href="#inquire">Inquire About Hosting</a>
+        </div>
+      </div>
+    </section>
+
     <!-- ============= HOW IT WORKS ============= -->
     <section class="section section--light" id="how-it-works">
       <div class="container">
@@ -238,6 +256,7 @@
               <li>The full SHINE curriculum, sheet music, and lyric frameworks</li>
               <li>A production playbook and staging plan</li>
               <li>A host marketing toolkit (photos, video, copy)</li>
+              <li>Show-branded key art and posters</li>
               <li>Liability insurance and COI documentation</li>
               <li>A recording of the performance and a post-show debrief</li>
             </ul>
@@ -632,7 +651,11 @@
 
     <!-- ============= FINAL CTA ============= -->
     <section class="final-cta final-cta--b2b" id="final-cta">
-      <div class="container">
+      <div class="container final-cta__grid">
+        <div class="poster gold-frame">
+          <img src="assets/shine-full.jpg" alt="SHINE: A Musical Theatre Creation Intensive key art" width="520" height="520" loading="lazy" />
+        </div>
+        <div class="final-cta__copy">
         <h2>Your venue. Your students. <em>One original musical. Six days.</em></h2>
         <p>Brian leads every intensive himself, so only a handful of 2027 host weeks are available.</p>
         <div class="final-cta__buttons">
@@ -650,6 +673,7 @@
           </div>
           <p class="packet__success" role="status" aria-live="polite" hidden>Thanks. Brian will email the host packet to you shortly.</p>
         </form>
+        </div>
       </div>
     </section>
 
