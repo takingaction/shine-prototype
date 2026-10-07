@@ -2421,3 +2421,9 @@ img[src$="day-6-solo.jpg"] { object-position: center 18%; }
 .footer__fa-links { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
 .footer__fa-visit { color: #f0cf5c; font-weight: 600; }
 .footer__fa-visit:hover { color: #fff; }
+
+/* Footer: wider FeinLine column */
+.footer__grid { grid-template-columns: 2fr 1fr 1fr; gap: 3rem; }
+.footer__fa-blurb { max-width: 60ch; }
+@media (max-width: 900px) { .footer__grid { grid-template-columns: 1fr 1fr; } .footer__fa { grid-column: 1 / -1; } }
+@media (max-width: 560px) { .footer__grid { grid-template-columns: 1fr; } }
