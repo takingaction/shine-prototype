@@ -2320,3 +2320,7 @@ h2 { font-size: clamp(2.25rem, 4vw, 3.1rem); }
 .ticket__head h3 { font-size: 1.75rem; }
 .stat__num, .case__stat-num { font-size: 2.1rem; }
 .final-cta--b2b h2 em { font-style: normal; }
+
+/* Nav logo image */
+.nav__brand img { display: block; height: 40px; width: auto; }
+@media (max-width: 860px) { .nav__brand img { height: 34px; } }
