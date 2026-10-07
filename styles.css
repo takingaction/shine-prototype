@@ -2352,3 +2352,6 @@ h2 { font-size: clamp(2.25rem, 4vw, 3.1rem); }
 @media (prefers-reduced-motion: reduce) {
   .hero__proof { animation: none; }
 }
+
+/* Keep the performer's face in frame wherever this portrait is cropped */
+img[src$="day-6-solo.jpg"] { object-position: center 18%; }
