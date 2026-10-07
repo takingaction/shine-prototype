@@ -81,6 +81,7 @@
     let pollId = null;
     let playbackBaseTime = 0;     // currentTime at last play()/seek
     let playbackStartedAt = 0;   // performance.now() at last play()/seek
+    let captionsOn = false;
 
     const sendCommand = (func, args = []) => {
       if (!iframe || !iframe.contentWindow) return;
@@ -120,7 +121,7 @@
         }
       });
       iframe = document.createElement('iframe');
-      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&enablejsapi=1&rel=0&modestbranding=1&controls=0&disablekb=1&cc_load_policy=1`;
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&enablejsapi=1&rel=0&modestbranding=1&controls=0&disablekb=1`;
       iframe.title = title;
       iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
       iframe.setAttribute('allowfullscreen', '');
@@ -136,6 +137,7 @@
       const queryCaptions = () => {
         sendCommand('loadModule', ['captions']);
         sendCommand('getOption', ['captions', 'tracklist']);
+        sendCommand('setOption', ['captions', 'track', {}]);
       };
       setTimeout(queryPlayer, 300);
       setTimeout(queryCaptions, 600);
@@ -227,18 +229,19 @@
       }
     });
 
-    ccBtn.addEventListener('click', () => {
-      const isOn = ccBtn.classList.contains('is-active');
-      if (isOn) {
-        sendCommand('setOption', ['captions', 'track', {}]);
-        ccBtn.classList.remove('is-active');
-        ccBtn.setAttribute('aria-pressed', 'false');
-      } else {
+    const applyCaptions = (on) => {
+      captionsOn = on;
+      if (on) {
+        sendCommand('loadModule', ['captions']);
         sendCommand('setOption', ['captions', 'track', { languageCode: 'en' }]);
-        ccBtn.classList.add('is-active');
-        ccBtn.setAttribute('aria-pressed', 'true');
+      } else {
+        sendCommand('setOption', ['captions', 'track', {}]);
       }
-    });
+      ccBtn.classList.toggle('is-active', on);
+      ccBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    };
+
+    ccBtn.addEventListener('click', () => applyCaptions(!captionsOn));
 
     /* --- Auto-hide the bottom controls after 3s of inactivity --- */
     let hideControlsTimer = null;
@@ -280,7 +283,7 @@
       const info = data.info || data;
       if (typeof info.playerState === 'number') {
         // 1 = playing, 2 = paused, 0 = ended, 3 = buffering, 5 = cued
-        if (info.playerState === 1) { setPlaying(true); startPolling(); }
+        if (info.playerState === 1) { setPlaying(true); startPolling(); applyCaptions(false); }
         else if (info.playerState === 2 || info.playerState === 0) { setPlaying(false); stopPolling(); }
       }
       if (typeof info.currentTime === 'number') { currentTime = info.currentTime; updateSeekUI(); }
