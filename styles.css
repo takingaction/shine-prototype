@@ -411,8 +411,8 @@ body.mobile-cta-visible { padding-bottom: 80px; }
 .hero__logo {
   position: absolute;
   right: 0.75rem;
-  bottom: 2.5rem;
-  width: 64px;
+  bottom: 95px;
+  width: 77px;
   height: auto;
   pointer-events: none;
   z-index: 2;
@@ -420,7 +420,7 @@ body.mobile-cta-visible { padding-bottom: 80px; }
   filter: drop-shadow(0 4px 10px rgba(0,0,0,0.35));
 }
 @media (max-width: 900px) {
-  .hero__logo { width: 48px; right: 0.5rem; bottom: 2rem; }
+  .hero__logo { width: 58px; right: 0.5rem; bottom: 97px; }
 }
 .hero__facts-card {
   background: rgba(232,200,74,0.08);
