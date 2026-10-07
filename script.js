@@ -82,6 +82,8 @@
     let playbackBaseTime = 0;     // currentTime at last play()/seek
     let playbackStartedAt = 0;   // performance.now() at last play()/seek
     let captionsOn = false;
+    let listeningAck = false;
+    let listeningStartedAt = 0;
 
     const sendCommand = (func, args = []) => {
       if (!iframe || !iframe.contentWindow) return;
@@ -89,6 +91,11 @@
         JSON.stringify({ event: 'command', func, args }),
         '*'
       );
+    };
+
+    const sendEvent = (event) => {
+      if (!iframe || !iframe.contentWindow) return;
+      iframe.contentWindow.postMessage(JSON.stringify({ event }), '*');
     };
 
     const formatTime = (s) => {
@@ -127,6 +134,20 @@
       iframe.setAttribute('allowfullscreen', '');
       videoFacade.appendChild(iframe);
       progress.hidden = false;
+      // Establish two-way communication: send {event:'listening'} and resend
+      // until YouTube replies with a 'listening' event or sends initialDelivery.
+      const startListening = () => {
+        sendEvent('listening');
+        listeningStartedAt = performance.now();
+      };
+      startListening();
+      const listeningRetry = setInterval(() => {
+        if (listeningAck || performance.now() - listeningStartedAt > 5000) {
+          clearInterval(listeningRetry);
+          return;
+        }
+        sendEvent('listening');
+      }, 250);
       // YouTube's iframe takes a moment to be ready to respond. Retry
       // getDuration over several ticks so we always catch it.
       const queryPlayer = () => {
@@ -196,11 +217,17 @@
       if (pollId) { clearInterval(pollId); pollId = null; }
     };
 
+    const resetPlaybackBase = () => {
+      playbackBaseTime = currentTime;
+      playbackStartedAt = performance.now();
+    };
+
     seekEl.addEventListener('input', () => {
       const pct = parseFloat(seekEl.value);
       const t = duration > 0 ? (pct / 100) * duration : pct;
       sendCommand('seekTo', [t, true]);
       currentTime = t;
+      resetPlaybackBase();
     });
 
     volumeEl.addEventListener('input', () => {
@@ -279,14 +306,15 @@
       if (!iframe) return;
       let data;
       try { data = JSON.parse(e.data); } catch (_) { return; }
-      if (!data || (data.event !== 'infoDelivery' && data.event !== 'onStateChange')) return;
+      if (!data || !['initialDelivery', 'infoDelivery', 'onStateChange', 'listening'].includes(data.event)) return;
+      if (data.event === 'listening') { listeningAck = true; return; }
       const info = data.info || data;
       if (typeof info.playerState === 'number') {
         // 1 = playing, 2 = paused, 0 = ended, 3 = buffering, 5 = cued
         if (info.playerState === 1) { setPlaying(true); startPolling(); applyCaptions(false); }
         else if (info.playerState === 2 || info.playerState === 0) { setPlaying(false); stopPolling(); }
       }
-      if (typeof info.currentTime === 'number') { currentTime = info.currentTime; updateSeekUI(); }
+      if (typeof info.currentTime === 'number') { currentTime = info.currentTime; updateSeekUI(); resetPlaybackBase(); }
       if (typeof info.duration === 'number') { duration = info.duration; updateSeekUI(); }
       if (typeof info.volume === 'number') {
         volumeEl.value = info.volume;
