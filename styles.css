@@ -212,8 +212,8 @@ body.ann-hidden .announcement-bar { display: none; }
   grid-template-columns: 1fr auto 1fr;
   align-items: end;
   gap: 1rem;
-  min-height: 84px;
-  padding-bottom: 14px;
+  min-height: 92px;
+  padding-bottom: 0;
 }
 .nav__brand {
   grid-column: 2;
@@ -227,9 +227,9 @@ body.ann-hidden .announcement-bar { display: none; }
   color: var(--ink);
   white-space: nowrap;
   justify-self: center;
-  margin-bottom: -14px;
+  margin-bottom: -22px;
 }
-.nav__brand img { display: none; }
+.nav__brand img { display: block; }
 .nav__logo {
   display: block;
   height: 92px;
@@ -260,7 +260,7 @@ body.ann-hidden .announcement-bar { display: none; }
 .nav__links a:hover,
 .nav__links a:focus-visible { color: var(--ink); outline: none; }
 
-.nav__links a.nav__cta { margin-left: 0.5rem; padding: 0.65rem 1.2rem; font-size: 0.95rem; color: #1a1402; }
+.nav__links a.nav__cta { margin-left: 0.5rem; padding: 0.65rem 1.2rem; font-size: 0.95rem; color: #1a1402; align-self: center; }
 .nav__links a.nav__cta:hover,
 .nav__links a.nav__cta:focus-visible { color: #1a1402; }
 
@@ -357,7 +357,7 @@ body.mobile-cta-visible { padding-bottom: 80px; }
 .hero {
   position: relative;
   overflow: hidden;
-  padding: 4.4rem 0 3rem;
+  padding: 5rem 0 3rem;
   background: var(--bg);
   border-bottom: 1px solid var(--rule);
 }
