@@ -366,7 +366,7 @@ body.mobile-cta-visible { padding-bottom: 80px; }
   font-weight: 700;
   margin-bottom: 1rem;
 }
-.hero h1 { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.02em; }
+.hero h1 { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.3em; }
 .hero h1 em { font-style: normal; color: var(--gold); }
 .hero__sub {
   font-size: 1.2rem;
@@ -2436,7 +2436,7 @@ img[src$="day-6-solo.jpg"] { object-position: center 18%; }
 .nav__wordmark {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.9rem;
+  font-size: 2.2rem;
   letter-spacing: 0.06em;
   line-height: 1;
   background: var(--gold-text);
@@ -2444,7 +2444,7 @@ img[src$="day-6-solo.jpg"] { object-position: center 18%; }
   background-clip: text;
   color: transparent;
 }
-@media (max-width: 860px) { .nav__wordmark { font-size: 1.6rem; } }
+@media (max-width: 860px) { .nav__wordmark { font-size: 1.85rem; } }
 
 /* Hero stamp */
 .hero__panel { position: relative; }
