@@ -17,7 +17,7 @@
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@700;800&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600;1,9..144,700&display=swap" />
   <link rel="stylesheet" href="styles.css" />
 
   <script type="application/ld+json">
@@ -257,37 +257,38 @@
         <ol class="steps">
           <li class="step">
             <img src="assets/day-1-ensemble.jpg" alt="Brian at the piano with the ensemble on Day 1" loading="lazy" />
-            <span class="step__day">Day 1</span>
+            <span class="step__day">Scene 1 · Day 1</span>
             <h3>The blank page</h3>
             <p>The ensemble forms and pitches ideas.</p>
           </li>
           <li class="step">
             <img src="assets/day-2-planning.jpg" alt="Students planning the story" loading="lazy" />
-            <span class="step__day">Day 2</span>
+            <span class="step__day">Scene 2 · Day 2</span>
             <h3>Characters and story</h3>
             <p>The group votes on the story and builds the plot.</p>
           </li>
           <li class="step">
             <img src="assets/day-3-piano-laugh.jpg" alt="Brian leading a songwriting session at the piano" loading="lazy" />
-            <span class="step__day">Day 3</span>
+            <span class="step__day">Scene 3 · Day 3</span>
             <h3>Writing the songs</h3>
             <p>Students write lyrics and melodies with Brian at the piano.</p>
           </li>
           <li class="step">
             <img src="assets/day-4-choreo.jpg" alt="Students rehearsing staging" loading="lazy" />
-            <span class="step__day">Day 4</span>
+            <span class="step__day">Scene 4 · Day 4</span>
             <h3>Scenes and staging</h3>
             <p>Dialogue is written and scenes are blocked.</p>
           </li>
           <li class="step">
             <img src="assets/gallery-rehearsal.jpg" alt="Full cast in rehearsal on stage" loading="lazy" />
-            <span class="step__day">Day 5</span>
+            <span class="step__day">Scene 5 · Day 5</span>
             <h3>Rehearsal</h3>
             <p>Run-throughs, costumes, and props.</p>
           </li>
-          <li class="step">
+          <li class="step step--finale">
+            <span class="step__badge">Opening Night</span>
             <img src="assets/day-6-solo.jpg" alt="A young performer on stage on opening night" loading="lazy" />
-            <span class="step__day">Day 6</span>
+            <span class="step__day">Scene 6 · Day 6</span>
             <h3>Opening night</h3>
             <p>A world premiere on your stage.</p>
           </li>
@@ -484,11 +485,14 @@
           </div>
 
           <aside aria-label="Inquiry form">
-            <form class="form" id="inquiry-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+            <form class="form ticket" id="inquiry-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
               <input type="hidden" name="_subject" value="New SHINE host inquiry" />
               <input type="hidden" name="form" value="inquiry" />
-              <h3>Inquire about hosting</h3>
-              <p class="form__lead">Brian responds within 2 business days.</p>
+              <div class="ticket__head">
+                <span class="ticket__admit">Admit one</span>
+                <h3>Inquire about hosting</h3>
+                <p class="form__lead">Admit: your organization · Brian responds within 2 business days.</p>
+              </div>
 
               <div class="form__row">
                 <div class="form__field">

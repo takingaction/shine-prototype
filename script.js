@@ -442,6 +442,25 @@
     });
   }
 
+  /* --- Scroll reveal (respects reduced motion) ---------- */
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    const targets = document.querySelectorAll(
+      '.section__head, .outcome, .step, .split__col, .case__inner, .brian, .staff, .fit__list, .program, .faq, .family-callout, .final-cta .container > *'
+    );
+    targets.forEach((el) => el.classList.add('reveal'));
+    document.documentElement.classList.add('js-reveal');
+    const revealIO = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealIO.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    targets.forEach((el) => revealIO.observe(el));
+  }
+
   /* --- Smooth scroll with sticky nav offset (fallback) - */
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener('click', (e) => {
