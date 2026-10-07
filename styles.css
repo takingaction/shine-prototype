@@ -2324,3 +2324,31 @@ h2 { font-size: clamp(2.25rem, 4vw, 3.1rem); }
 /* Nav logo image */
 .nav__brand img { display: block; height: 40px; width: auto; }
 @media (max-width: 860px) { .nav__brand img { height: 34px; } }
+
+/* =========================================================
+   Hero proof card: animated gold border (travelling sparkle)
+   ========================================================= */
+@property --proof-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.hero__proof {
+  --proof-angle: 0deg;
+  border: 3px solid transparent;
+  background:
+    linear-gradient(rgba(15,26,61,0.92), rgba(15,26,61,0.92)) padding-box,
+    conic-gradient(from var(--proof-angle),
+      #8a6514 0deg, #d9ab2e 60deg, #f0cf5c 140deg,
+      #fff6d6 165deg, #f0cf5c 190deg, #d9ab2e 260deg, #8a6514 360deg) border-box;
+  box-shadow: 0 0 28px -6px rgba(226,184,68,0.45), var(--shadow-lg);
+  animation: proof-spin 8s linear infinite;
+}
+.hero__proof:hover {
+  border-color: transparent;
+  box-shadow: 0 0 40px -4px rgba(226,184,68,0.65), var(--shadow-lg);
+}
+@keyframes proof-spin { to { --proof-angle: 360deg; } }
+@media (prefers-reduced-motion: reduce) {
+  .hero__proof { animation: none; }
+}
