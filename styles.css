@@ -2355,3 +2355,69 @@ h2 { font-size: clamp(2.25rem, 4vw, 3.1rem); }
 
 /* Keep the performer's face in frame wherever this portrait is cropped */
 img[src$="day-6-solo.jpg"] { object-position: center 18%; }
+
+/* =========================================================
+   Featured educator quote, press chip, FeinLine footer
+   ========================================================= */
+.quote-feature {
+  position: relative;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.75rem 3rem 2.25rem;
+  background: #ffffff;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-card);
+  text-align: center;
+}
+.quote-feature__mark {
+  display: block;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 5.5rem;
+  font-weight: 700;
+  line-height: 1;
+  height: 3rem;
+  margin-bottom: 0.5rem;
+  background: var(--gold-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.quote-feature blockquote {
+  margin: 0 0 1.5rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  line-height: 1.45;
+  color: var(--ink);
+}
+.quote-feature figcaption { color: var(--ink-muted); font-size: 0.95rem; }
+.quote-feature figcaption strong { display: block; color: var(--brand); font-size: 1.05rem; }
+@media (max-width: 600px) { .quote-feature { padding: 2.25rem 1.5rem 1.75rem; } }
+
+.credibility__chip--press { text-decoration: none; transition: border-color 150ms ease, color 150ms ease; }
+.credibility__chip--press:hover { border-color: var(--brand); color: var(--brand); }
+.case__link + .case__link { margin-top: 0.9rem; }
+.case__inner .case__link { display: table; }
+
+.footer__fa-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #9aa3c0;
+  margin-bottom: 0.6rem;
+}
+.footer__fa-logo img { display: block; height: 48px; width: auto; }
+.footer__fa-tagline {
+  margin: 0.75rem 0 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: #f0cf5c;
+}
+.footer__fa-blurb { margin: 0 0 1rem; max-width: 42ch; line-height: 1.6; }
+.footer__fa-links { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.footer__fa-visit { color: #f0cf5c; font-weight: 600; }
+.footer__fa-visit:hover { color: #fff; }

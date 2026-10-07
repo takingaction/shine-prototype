@@ -355,7 +355,7 @@
      Posts to Formspree once a real form ID replaces YOUR_FORM_ID
      in the form's action. Until then, falls back to opening a
      pre-filled email to Brian so no lead is ever lost. */
-  const LEAD_EMAIL = 'brian@feinlineacademy.com';
+  const LEAD_EMAIL = 'FeinsteinBrian@gmail.com';
 
   const endpointReady = (form) =>
     form.action && form.action.indexOf('YOUR_FORM_ID') === -1;
