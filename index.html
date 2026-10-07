@@ -50,18 +50,22 @@
   <!-- ============= NAV ============= -->
   <header class="nav" role="banner">
     <div class="container nav__inner">
-      <a href="#" class="nav__brand" aria-label="SHINE home">
-        <span class="nav__wordmark">SHINE</span>
-      </a>
       <button class="nav__toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">☰</button>
-      <ul id="primary-nav" class="nav__links">
-        <li><a href="#why-host">Why host</a></li>
-        <li><a href="#how-it-works">How it works</a></li>
-        <li><a href="#case-study">Results</a></li>
-        <li><a href="#meet-brian">Meet Brian</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a class="btn btn-primary nav__cta" href="#inquire">Inquire About Hosting</a></li>
-      </ul>
+      <a href="#" class="nav__brand" aria-label="SHINE home">
+        <img src="assets/shine-transparent.png" alt="SHINE — A Musical Theatre Creation Intensive" class="nav__logo" />
+      </a>
+      <div class="nav__dropdown">
+        <ul id="primary-nav-left" class="nav__links nav__links--left">
+          <li><a href="#why-host">Why host</a></li>
+          <li><a href="#how-it-works">How it works</a></li>
+        </ul>
+        <ul id="primary-nav" class="nav__links nav__links--right">
+          <li><a href="#case-study">Results</a></li>
+          <li><a href="#meet-brian">Meet Brian</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a class="btn btn-primary nav__cta" href="#inquire">Inquire About Hosting</a></li>
+        </ul>
+      </div>
     </div>
   </header>
 
@@ -94,9 +98,11 @@
         </div>
 
         <aside class="hero__panel" aria-label="Proof">
+          <!-- Temporarily hidden: hero stamp moved to the navbar
           <div class="hero__stamp gold-frame gold-frame--round" aria-hidden="true">
             <img src="assets/shine-full-circle.jpg" alt="" width="160" height="160" />
           </div>
+          -->
           <a class="hero__proof gold-frame" href="#case-study">
             <img src="assets/gallery-cast-pose.jpg" alt="SHINE ensemble on the Broward Center stage" />
             <div class="hero__proof-text">

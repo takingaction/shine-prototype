@@ -207,32 +207,50 @@ body.ann-hidden .announcement-bar { display: none; }
   border-bottom-color: var(--rule);
 }
 .nav__inner {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  height: 70px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+  gap: 1rem;
+  min-height: 84px;
+  padding-bottom: 14px;
 }
 .nav__brand {
+  grid-column: 2;
   display: flex;
-  align-items: center;
-  gap: 0.6rem;
+  align-items: flex-end;
+  justify-content: center;
   font-weight: 800;
   letter-spacing: 0.02em;
   font-size: 2.375rem;
   line-height: 1;
   color: var(--ink);
   white-space: nowrap;
+  justify-self: center;
+  margin-bottom: -14px;
 }
 .nav__brand img { display: none; }
+.nav__logo {
+  display: block;
+  height: 92px;
+  width: auto;
+  pointer-events: none;
+}
+.nav__dropdown {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  display: contents;
+}
 .nav__links {
   display: flex;
   align-items: center;
   gap: 1.4rem;
-  margin-left: auto;
   list-style: none;
   padding: 0;
   margin-block: 0;
 }
+.nav__links--left  { grid-column: 1; justify-content: flex-end; padding-right: 1rem; }
+.nav__links--right { grid-column: 3; justify-content: flex-start; padding-left: 1rem; }
 .nav__links a {
   font-size: 1rem;
   color: var(--ink-muted);
@@ -257,15 +275,22 @@ body.ann-hidden .announcement-bar { display: none; }
 }
 
 @media (max-width: 860px) {
-  .nav__toggle { display: inline-flex; margin-left: auto; }
-  .nav__links {
+  .nav__inner {
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    min-height: 64px;
+    padding-bottom: 0;
+    gap: 0.75rem;
+  }
+  .nav__toggle { display: inline-flex; grid-column: 3; grid-row: 1; justify-self: end; }
+  .nav__brand { grid-column: 2; margin-bottom: 0; align-items: center; }
+  .nav__logo { height: 60px; }
+  .nav__dropdown {
+    display: block;
     position: absolute;
-    top: 70px;
+    top: 64px;
     left: 0;
     right: 0;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
     background: var(--bg-alt);
     border-bottom: 1px solid var(--rule);
     padding: 0.5rem 1rem 1rem;
@@ -274,11 +299,23 @@ body.ann-hidden .announcement-bar { display: none; }
     pointer-events: none;
     transition: opacity 160ms ease, transform 160ms ease;
   }
+  .nav__links {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0;
+  }
+  .nav__links--left,
+  .nav__links--right {
+    grid-column: auto;
+    justify-content: stretch;
+    padding: 0;
+  }
   .nav__links li { padding: 0.6rem 0; border-bottom: 1px solid var(--rule); }
   .nav__links li:last-child { border-bottom: none; }
   .nav__links a { display: block; padding: 0.4rem 0; }
   .nav__links a.nav__cta { width: 100%; margin-top: 0.6rem; }
-  body.nav-open .nav__links {
+  body.nav-open .nav__dropdown {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
@@ -320,7 +357,7 @@ body.mobile-cta-visible { padding-bottom: 80px; }
 .hero {
   position: relative;
   overflow: hidden;
-  padding: 3.5rem 0 3rem;
+  padding: 4.4rem 0 3rem;
   background: var(--bg);
   border-bottom: 1px solid var(--rule);
 }
@@ -2321,9 +2358,7 @@ h2 { font-size: clamp(2.25rem, 4vw, 3.1rem); }
 .stat__num, .case__stat-num { font-size: 2.1rem; }
 .final-cta--b2b h2 em { font-style: normal; }
 
-/* Nav logo image */
-.nav__brand img { display: block; height: 40px; width: auto; }
-@media (max-width: 860px) { .nav__brand img { height: 34px; } }
+/* Nav logo image - see .nav__logo rules at the top of the Nav block */
 
 /* =========================================================
    Reusable animated gold frame (travelling sparkle)
@@ -2433,6 +2468,7 @@ img[src$="day-6-solo.jpg"] { object-position: center 18%; }
 /* =========================================================
    Nav wordmark, hero stamp, posters
    ========================================================= */
+/*
 .nav__wordmark {
   font-family: var(--font-display);
   font-weight: 700;
@@ -2445,8 +2481,9 @@ img[src$="day-6-solo.jpg"] { object-position: center 18%; }
   color: transparent;
 }
 @media (max-width: 860px) { .nav__wordmark { font-size: 1.85rem; } }
+*/
 
-/* Hero stamp */
+/* Hero stamp - temporarily hidden, logo moved to the navbar
 .hero__panel { position: relative; }
 .hero__stamp {
   position: absolute;
@@ -2465,6 +2502,7 @@ img[src$="day-6-solo.jpg"] { object-position: center 18%; }
 .hero__panel:hover .hero__stamp { transform: rotate(0deg) scale(1.05); }
 @media (max-width: 1100px) { .hero__stamp { width: 120px; height: 120px; top: -32px; left: -28px; } }
 @media (max-width: 900px) { .hero__stamp { width: 96px; height: 96px; top: -28px; left: auto; right: -8px; } }
+*/
 
 /* Posters */
 .poster {
