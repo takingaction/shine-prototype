@@ -2319,3 +2319,4 @@ h1 { font-size: clamp(2.9rem, 6vw, 4.7rem); }
 h2 { font-size: clamp(2.25rem, 4vw, 3.1rem); }
 .ticket__head h3 { font-size: 1.75rem; }
 .stat__num, .case__stat-num { font-size: 2.1rem; }
+.final-cta--b2b h2 em { font-style: normal; }
