@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600;1,9..144,700&display=swap" />
-  <link rel="stylesheet" href="styles.css?v=rev2" />
+  <link rel="stylesheet" href="styles.css?v=rev3" />
 
   <script type="application/ld+json">
   {
@@ -80,32 +80,18 @@
         <div class="hero__overlay"></div>
       </div>
       <div class="container hero__inner">
-        <div class="hero__text">
-          <div class="hero__eyebrow">A FeinLine Academy program · For young artists, families, venues &amp; schools</div>
-          <h1><span class="hero__brand">SHINE:</span> They don't just perform a musical. <em>They create one.</em></h1>
-          <p class="hero__sub">
-            In just six days, young theatre-makers turn a blank page into a world premiere: their own story,
-            their own songs, on a real stage. Every SHINE intensive is personally led by award-winning composer
-            and teaching artist Brian Feinstein.
-          </p>
-          <div class="hero__ctas">
-            <a class="btn btn-ghost" href="#families">For Families</a>
-            <a class="btn btn-primary" href="#for-hosts">Bring SHINE to Your Venue</a>
-          </div>
-          <p class="hero__micro"><a class="hero__watch" href="#video">▶ Watch the SHINE story</a> · No experience needed, just imagination.</p>
+        <div class="hero__art poster gold-frame">
+          <img src="assets/shine-full.jpg" alt="SHINE: A Musical Theatre Creation Intensive" width="520" height="520" />
         </div>
-
-        <aside class="hero__panel" aria-label="Proof">
-          <a class="hero__proof gold-frame" href="#the-premiere">
-            <img src="assets/gallery-cast-pose.jpg" alt="SHINE ensemble on the Broward Center stage" />
-            <div class="hero__proof-text">
-              <span class="hero__proof-label">Premiered Summer 2026</span>
-              <span class="hero__proof-value">Broward Center for the Performing Arts</span>
-              <span class="hero__proof-meta">17 students · 6 days · 1 original musical</span>
-            </div>
-          </a>
-          <img class="hero__logo" src="assets/shine-transparent.png" alt="" aria-hidden="true" />
-        </aside>
+        <div class="hero__text">
+          <div class="hero__eyebrow">A FeinLine Academy program<span class="hero__eyebrow-sep"> · </span>For venues, schools &amp; arts organizations</div>
+          <h1>They don't just perform a musical. <em>They create one.</em></h1>
+          <p class="hero__sub">In six days, young theatre-makers turn a blank page into a world premiere, personally led by award-winning composer Brian Feinstein.</p>
+          <div class="hero__ctas">
+            <a class="btn btn-primary" href="#inquire">Inquire About Hosting</a>
+          </div>
+          <p class="hero__micro"><a class="hero__watch" href="#video">▶ Watch the SHINE story</a></p>
+        </div>
       </div>
     </section>
 
@@ -151,68 +137,8 @@
       </div>
     </section>
 
-    <!-- ============= FOR FAMILIES ============= -->
-    <section class="section section--white families" id="families">
-      <div class="container">
-        <div class="section__head">
-          <div class="section__eyebrow">For Families</div>
-          <h2>Everyone has a story worth telling.</h2>
-        </div>
-
-        <div class="families__grid">
-          <div class="families__story">
-            <p class="families__lead">On day one, there's no script. No songs. Just a room full of young imaginations and a blank page.</p>
-            <p class="families__beat">Six days later? A world premiere.</p>
-            <p>Together, our young theatre-makers dream up characters, build a story, write original songs, and bring their very own musical to life onstage, in front of family and friends.</p>
-            <p>No prior experience necessary. Just curiosity, creativity, and a willingness to jump in.</p>
-            <p>Brian will be there every step of the way, guiding the creative process, exploring their ideas at the piano, and helping them discover something pretty extraordinary: the power of their own imagination and what they can create together.</p>
-            <p>And yes, there will be plenty of laughter along the way.</p>
-          </div>
-
-          <aside class="families__card" aria-label="Program details for families">
-            <h3 class="families__card-title">The details</h3>
-            <ul class="families__details">
-              <li><strong>Ages:</strong> Vary by program and location</li>
-              <li>No writing, musical or performance experience necessary</li>
-              <li>Six days. One original musical. Their world premiere.</li>
-            </ul>
-
-            <h3 class="families__card-title">What they'll take home <span>(besides the applause)</span></h3>
-            <ul class="families__gains">
-              <li><strong>Confidence:</strong> The thrill of sharing something they've created on a professional stage.</li>
-              <li><strong>Creative skills:</strong> Hands-on experience with storytelling, songwriting, character development, and collaboration.</li>
-              <li><strong>A sense of ownership:</strong> Their characters. Their lyrics. Their musical.</li>
-              <li><strong>An ensemble:</strong> New friendships and the discovery of what happens when creative minds come together.</li>
-              <li><strong>A lasting memory:</strong> A world premiere that began with their own ideas.</li>
-            </ul>
-          </aside>
-        </div>
-
-        <div class="families__signup" id="family-signup">
-          <div class="families__signup-copy">
-            <h3>Could SHINE be coming to your community?</h3>
-            <p>We'd love to keep you in the loop! Leave your email, and we'll let you know when a SHINE intensive is planned near you.</p>
-          </div>
-          <form class="families__form" id="family-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
-            <input type="hidden" name="_subject" value="SHINE family interest signup" />
-            <input type="hidden" name="form" value="family-interest" />
-            <div class="families__form-row">
-              <label class="sr-only" for="ff-email">Email</label>
-              <input class="form__input" id="ff-email" name="email" type="email" placeholder="Your email" required autocomplete="email" />
-              <label class="sr-only" for="ff-loc">City or ZIP code</label>
-              <input class="form__input" id="ff-loc" name="location" type="text" placeholder="City or ZIP" autocomplete="postal-code" />
-              <button class="btn btn-primary" type="submit">Keep Me in the Loop</button>
-            </div>
-            <p class="families__success" role="status" aria-live="polite" hidden>Thanks! We'll let you know when SHINE is coming to your area.</p>
-          </form>
-        </div>
-
-        <p class="families__crosslink">Are you a venue, school, or arts organization? <a href="#for-hosts">See how to bring SHINE to your stage →</a></p>
-      </div>
-    </section>
-
     <!-- ============= FOR HOSTS ============= -->
-    <section class="section section--light" id="for-hosts">
+    <section class="section section--white" id="for-hosts">
       <div class="container">
         <div class="section__head">
           <div class="section__eyebrow">For Venues, Schools &amp; Arts Organizations</div>
@@ -255,7 +181,7 @@
     </section>
 
     <!-- ============= HOW IT WORKS ============= -->
-    <section class="section section--white" id="how-it-works">
+    <section class="section section--light" id="how-it-works">
       <div class="container">
         <div class="section__head">
           <div class="section__eyebrow">How it works</div>
@@ -389,8 +315,68 @@
       </div>
     </section>
 
+    <!-- ============= FOR FAMILIES ============= -->
+    <section class="section section--white families" id="families">
+      <div class="container">
+        <div class="section__head">
+          <div class="section__eyebrow">For Families</div>
+          <h2>Everyone has a story worth telling.</h2>
+        </div>
+
+        <div class="families__grid">
+          <div class="families__story">
+            <p class="families__lead">On day one, there's no script. No songs. Just a room full of young imaginations and a blank page.</p>
+            <p class="families__beat">Six days later? A world premiere.</p>
+            <p>Together, our young theatre-makers dream up characters, build a story, write original songs, and bring their very own musical to life onstage, in front of family and friends.</p>
+            <p>No prior experience necessary. Just curiosity, creativity, and a willingness to jump in.</p>
+            <p>Brian will be there every step of the way, guiding the creative process, exploring their ideas at the piano, and helping them discover something pretty extraordinary: the power of their own imagination and what they can create together.</p>
+            <p>And yes, there will be plenty of laughter along the way.</p>
+          </div>
+
+          <aside class="families__card" aria-label="Program details for families">
+            <h3 class="families__card-title">The details</h3>
+            <ul class="families__details">
+              <li><strong>Ages:</strong> Vary by program and location</li>
+              <li>No writing, musical or performance experience necessary</li>
+              <li>Six days. One original musical. Their world premiere.</li>
+            </ul>
+
+            <h3 class="families__card-title">What they'll take home <span>(besides the applause)</span></h3>
+            <ul class="families__gains">
+              <li><strong>Confidence:</strong> The thrill of sharing something they've created on a professional stage.</li>
+              <li><strong>Creative skills:</strong> Hands-on experience with storytelling, songwriting, character development, and collaboration.</li>
+              <li><strong>A sense of ownership:</strong> Their characters. Their lyrics. Their musical.</li>
+              <li><strong>An ensemble:</strong> New friendships and the discovery of what happens when creative minds come together.</li>
+              <li><strong>A lasting memory:</strong> A world premiere that began with their own ideas.</li>
+            </ul>
+          </aside>
+        </div>
+
+        <div class="families__signup" id="family-signup">
+          <div class="families__signup-copy">
+            <h3>Could SHINE be coming to your community?</h3>
+            <p>We'd love to keep you in the loop! Leave your email, and we'll let you know when a SHINE intensive is planned near you.</p>
+          </div>
+          <form class="families__form" id="family-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+            <input type="hidden" name="_subject" value="SHINE family interest signup" />
+            <input type="hidden" name="form" value="family-interest" />
+            <div class="families__form-row">
+              <label class="sr-only" for="ff-email">Email</label>
+              <input class="form__input" id="ff-email" name="email" type="email" placeholder="Your email" required autocomplete="email" />
+              <label class="sr-only" for="ff-loc">City or ZIP code</label>
+              <input class="form__input" id="ff-loc" name="location" type="text" placeholder="City or ZIP" autocomplete="postal-code" />
+              <button class="btn btn-primary" type="submit">Keep Me in the Loop</button>
+            </div>
+            <p class="families__success" role="status" aria-live="polite" hidden>Thanks! We'll let you know when SHINE is coming to your area.</p>
+          </form>
+        </div>
+
+        <p class="families__crosslink">Are you a venue, school, or arts organization? <a href="#for-hosts">See how to bring SHINE to your stage →</a></p>
+      </div>
+    </section>
+
     <!-- ============= MEET BRIAN ============= -->
-    <section class="section section--white" id="meet-brian">
+    <section class="section section--light" id="meet-brian">
       <div class="container">
         <div class="section__head">
           <div class="section__eyebrow">Your lead artist</div>
@@ -632,8 +618,16 @@
     <!-- ============= FINAL CTA ============= -->
     <section class="final-cta final-cta--b2b" id="final-cta">
       <div class="container final-cta__grid">
-        <div class="poster gold-frame">
-          <img src="assets/shine-full.jpg" alt="SHINE: A Musical Theatre Creation Intensive key art" width="520" height="520" loading="lazy" />
+        <div class="proof">
+          <a class="proof-card gold-frame" href="#video" aria-label="Watch the Broward Center premiere video">
+            <img src="assets/gallery-cast-pose.jpg" alt="SHINE ensemble on the Broward Center stage" loading="lazy" />
+            <div class="proof-card__text">
+              <span class="proof-card__label">Premiered Summer 2026</span>
+              <span class="proof-card__value">Broward Center for the Performing Arts</span>
+              <span class="proof-card__meta">17 students · 6 days · 1 original musical</span>
+            </div>
+          </a>
+          <img class="proof__stamp" src="assets/shine-transparent.png" alt="" aria-hidden="true" />
         </div>
         <div class="final-cta__copy">
           <h2>Your venue. Your students. <em>One original musical. Six days.</em></h2>
@@ -702,6 +696,6 @@
     <button class="lightbox__btn lightbox__btn--next" aria-label="Next image">›</button>
   </div>
 
-  <script src="script.js?v=rev2"></script>
+  <script src="script.js?v=rev3"></script>
 </body>
 </html>
