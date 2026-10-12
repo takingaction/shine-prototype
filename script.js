@@ -6,22 +6,6 @@
 (function () {
   'use strict';
 
-  /* --- Announcement bar dismiss ---------------------- */
-  const STORAGE_KEY = 'shine_ann_dismissed';
-  const bar = document.querySelector('.announcement-bar');
-  if (bar) {
-    if (localStorage.getItem(STORAGE_KEY) === '1') {
-      document.body.classList.add('ann-hidden');
-    }
-    const closeBtn = bar.querySelector('.announcement-bar__close');
-    if (closeBtn) {
-      closeBtn.addEventListener('click', () => {
-        document.body.classList.add('ann-hidden');
-        try { localStorage.setItem(STORAGE_KEY, '1'); } catch (_) {}
-      });
-    }
-  }
-
   /* --- Sticky nav background on scroll -------------- */
   const nav = document.querySelector('.nav');
   if (nav) {
@@ -60,6 +44,49 @@
       { rootMargin: '-80px 0px 0px 0px', threshold: 0 }
     );
     io.observe(hero);
+
+    /* Swap the sticky button to the family signup while For Families is on screen */
+    const familiesSection = document.getElementById('families');
+    const hostsBtn = mobileCta.querySelector('[data-mobile-cta="hosts"]');
+    const familiesBtn = mobileCta.querySelector('[data-mobile-cta="families"]');
+    if (familiesSection && hostsBtn && familiesBtn) {
+      const familyIO = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            hostsBtn.hidden = entry.isIntersecting;
+            familiesBtn.hidden = !entry.isIntersecting;
+          });
+        },
+        { rootMargin: '-30% 0px -30% 0px', threshold: 0 }
+      );
+      familyIO.observe(familiesSection);
+    }
+  }
+
+  /* --- FAQ tabs (For Hosts / For Families) ---------- */
+  const faqTabs = Array.from(document.querySelectorAll('.faq-tabs__tab'));
+  if (faqTabs.length) {
+    const selectTab = (tab, focus) => {
+      faqTabs.forEach((t) => {
+        const selected = t === tab;
+        t.setAttribute('aria-selected', selected ? 'true' : 'false');
+        t.tabIndex = selected ? 0 : -1;
+        const panel = document.getElementById(t.getAttribute('aria-controls'));
+        if (panel) panel.hidden = !selected;
+      });
+      if (focus) tab.focus();
+    };
+    faqTabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => selectTab(tab, false));
+      tab.addEventListener('keydown', (e) => {
+        let next = null;
+        if (e.key === 'ArrowRight') next = faqTabs[(i + 1) % faqTabs.length];
+        else if (e.key === 'ArrowLeft') next = faqTabs[(i - 1 + faqTabs.length) % faqTabs.length];
+        else if (e.key === 'Home') next = faqTabs[0];
+        else if (e.key === 'End') next = faqTabs[faqTabs.length - 1];
+        if (next) { e.preventDefault(); selectTab(next, true); }
+      });
+    });
   }
 
   /* --- Video facade (play/pause/seek/volume/CC) ----- */
@@ -382,11 +409,11 @@
     });
   }
 
-  /* --- Forms: inquiry + host packet ----------------------
+  /* --- Forms: host inquiry + family interest -------------
      Posts to Formspree once a real form ID replaces YOUR_FORM_ID
      in the form's action. Until then, falls back to opening a
      pre-filled email to Brian so no lead is ever lost. */
-  const LEAD_EMAIL = 'FeinsteinBrian@gmail.com';
+  const LEAD_EMAIL = 'brian@feinlineacademy.com';
 
   const endpointReady = (form) =>
     form.action && form.action.indexOf('YOUR_FORM_ID') === -1;
@@ -458,18 +485,21 @@
     });
   }
 
-  const packetForm = document.getElementById('packet-form');
-  if (packetForm) {
-    packetForm.addEventListener('submit', async (e) => {
+  const familyForm = document.getElementById('family-form');
+  if (familyForm) {
+    familyForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      if (!validate(packetForm)) return;
-      const ok = await submitLead(packetForm);
+      if (!validate(familyForm)) return;
+      const btn = familyForm.querySelector('[type="submit"]');
+      btn.disabled = true;
+      const ok = await submitLead(familyForm);
+      btn.disabled = false;
       if (!ok) {
-        showError(packetForm, 'Something went wrong. Please email ' + LEAD_EMAIL + ' directly.');
+        showError(familyForm, 'Something went wrong. Please email ' + LEAD_EMAIL + ' directly.');
         return;
       }
-      packetForm.querySelector('.packet__row').hidden = true;
-      packetForm.querySelector('.packet__success').hidden = false;
+      familyForm.querySelector('.families__form-row').hidden = true;
+      familyForm.querySelector('.families__success').hidden = false;
     });
   }
 
@@ -477,7 +507,7 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!reduceMotion && 'IntersectionObserver' in window) {
     const targets = document.querySelectorAll(
-      '.section__head, .outcome, .step, .split__col, .case__inner, .brian, .staff, .fit__list, .program, .faq, .family-callout, .final-cta .container > *'
+      '.section__head, .outcome, .step, .split__col, .case__inner, .brian, .families__story, .families__card, .families__signup, .program, .faq-tabs, .final-cta .container > *'
     );
     targets.forEach((el) => el.classList.add('reveal'));
     document.documentElement.classList.add('js-reveal');
