@@ -37,7 +37,6 @@ Placeholder (every `[bracketed]` shown with a subtle dashed underline in the bro
 | Phone, email | Footer, form, contact line |
 | Featured parent quote | Testimonials |
 | Student quotes (2) | Testimonials |
-| Host/presenter quote (Broward Center contact) | Testimonials, case study |
 | `[X]%` would recommend | Stats band |
 | `[15–20]` student cohort floor | Fit section |
 | Student-to-staff ratio `[X:1]` | Meet Brian |
@@ -92,7 +91,7 @@ The 18 source files were renamed for clarity:
 1. **Ages, cohort size, and daily hours** - currently bracketed.
 2. **Phone number** that should appear in the footer and form note.
 3. **Featured parent quote + 2 student quotes** with permissions, for the testimonials section.
-4. **A host/presenter quote from his Broward Center contact** - this is the most important missing piece of social proof. Without it, the case study lacks a voice from the buyer's side.
+4. ~~**A host/presenter quote from his Broward Center contact**~~ - received (Tammy Holder), now featured in Testimonials.
 5. **Teaching staff bios and headshots** if there are other instructors.
 6. **Highlight video** - replace the placeholder YouTube URL in `index.html` with the real 60–120 second re-edit.
 7. **Host information packet (PDF)** - referenced via the "Download the host information packet" link. Mailto placeholder for now.

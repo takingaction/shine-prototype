@@ -2572,6 +2572,28 @@ p { text-wrap: pretty; }
   box-shadow: 0 0 0 6px rgba(240,207,92,0.12), 0 20px 50px -22px rgba(154,116,20,0.45);
 }
 
+/* Two featured quotes side by side (presenter + educator); stack on smaller screens */
+.quote-feature-pair {
+  display: grid;
+  gap: 1.75rem;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.quote-feature-pair .quote-feature {
+  max-width: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.quote-feature-pair .quote-feature blockquote {
+  font-size: clamp(1.15rem, 1.6vw, 1.3rem);
+  flex: 1 1 auto;
+}
+@media (min-width: 901px) {
+  .quote-feature-pair { grid-template-columns: repeat(2, 1fr); }
+  .quote-feature-pair .quote-feature { padding: 2.5rem 2.25rem 2rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero__art.gold-frame { animation: none; }
 }
