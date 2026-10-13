@@ -2653,3 +2653,17 @@ p { text-wrap: pretty; }
 .section--navy .brian__bio { color: rgba(251,246,234,0.84); }
 .section--navy .brian__bio em { color: var(--ivory); }
 .section--navy .brian__photo { box-shadow: 0 0 0 2px rgba(226,184,68,0.5), 0 24px 50px -18px rgba(0,0,0,0.7); }
+
+/* Nav/hero separation: always-on gold hairline + soft shadow */
+.nav {
+  border-bottom: 0;
+  box-shadow: 0 10px 24px -12px rgba(0,0,0,0.55);
+}
+.nav::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(226,184,68,0.85) 15%, #e2b844 50%, rgba(226,184,68,0.85) 85%, transparent);
+  pointer-events: none;
+}
