@@ -45,8 +45,8 @@
     );
     io.observe(hero);
 
-    /* Swap the sticky button to the family signup while For Families is on screen */
-    const familiesSection = document.getElementById('families');
+    /* Swap the sticky button to the family signup while The SHINE Experience is on screen */
+    const familiesSection = document.getElementById('experience');
     const hostsBtn = mobileCta.querySelector('[data-mobile-cta="hosts"]');
     const familiesBtn = mobileCta.querySelector('[data-mobile-cta="families"]');
     if (familiesSection && hostsBtn && familiesBtn) {
