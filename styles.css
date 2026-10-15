@@ -286,7 +286,22 @@ p { margin: 0 0 1em; }
   transform: translateY(100%);
   transition: transform 220ms ease;
 }
-.mobile-cta .btn { width: 100%; }
+/* Button sits on the left so the hosting badge in the
+   bottom-right corner never covers it. Adjust --badge-space
+   if the badge changes size (set it to 0 to go full width). */
+.mobile-cta {
+  --badge-space: 9.5rem;
+  padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+}
+.mobile-cta .btn {
+  width: calc(100% - var(--badge-space));
+  padding: 0.85rem 1.1rem;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+@media (max-width: 359px) {
+  .mobile-cta .btn { font-size: 0.85rem; line-height: 1.15; padding: 0.6rem 0.75rem; white-space: normal; }
+}
 body { padding-bottom: 0; }
 
 @media (max-width: 700px) {
