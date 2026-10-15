@@ -357,9 +357,9 @@
             <h3>Could SHINE be coming to your community?</h3>
             <p>We’d love to keep you in the loop! Leave your email, and we’ll let you know when a SHINE intensive is planned near you.</p>
           </div>
-          <form class="families__form" id="family-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
-            <input type="hidden" name="_subject" value="SHINE family interest signup" />
-            <input type="hidden" name="form" value="family-interest" />
+          <form class="families__form" id="family-form" name="family-interest" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+            <input type="hidden" name="form-name" value="family-interest" />
+            <p hidden><label>Don’t fill this out if you’re human: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
             <div class="families__form-row">
               <label class="sr-only" for="ff-email">Email</label>
               <input class="form__input" id="ff-email" name="email" type="email" placeholder="Your email" required autocomplete="email" />
@@ -468,9 +468,9 @@
           </div>
 
           <aside aria-label="Inquiry form">
-            <form class="form ticket" id="inquiry-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
-              <input type="hidden" name="_subject" value="New SHINE host inquiry" />
-              <input type="hidden" name="form" value="inquiry" />
+            <form class="form ticket" id="inquiry-form" name="host-inquiry" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+              <input type="hidden" name="form-name" value="host-inquiry" />
+              <p hidden><label>Don’t fill this out if you’re human: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
               <div class="ticket__head">
                 <span class="ticket__admit">Admit one</span>
                 <h3>Let’s see if SHINE fits your season.</h3>

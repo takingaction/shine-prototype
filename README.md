@@ -55,7 +55,7 @@ From the plan's §10 Phase 1 checklist, adapted for B2B:
 - [x] Video moved up, directly below the hero
 - [x] Mailto replaced with on-page inquiry form
 - [ ] Analytics, retargeting pixels, and email backend - not wired (per scope)
-- [ ] Form submission endpoint - not wired (form is JS-only, shows success state)
+- [x] Form submission via **Netlify Forms** - `host-inquiry` and `family-interest` (honeypot spam filter; local previews fall back to a pre-filled email)
 
 ---
 

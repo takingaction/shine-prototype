@@ -410,13 +410,20 @@
   }
 
   /* --- Forms: host inquiry + family interest -------------
-     Posts to Formspree once a real form ID replaces YOUR_FORM_ID
-     in the form's action. Until then, falls back to opening a
-     pre-filled email to Brian so no lead is ever lost. */
+     Submitted to Netlify Forms (see data-netlify on each <form>).
+     Netlify detects the forms at deploy time and accepts an
+     urlencoded POST to "/" carrying the hidden form-name field.
+     When previewing locally (file:// or localhost) there is no
+     Netlify endpoint, so we fall back to a pre-filled email. */
   const LEAD_EMAIL = 'brian@feinlineacademy.com';
+  const SUBJECTS = {
+    'host-inquiry': 'New SHINE host inquiry',
+    'family-interest': 'SHINE family interest signup',
+  };
 
-  const endpointReady = (form) =>
-    form.action && form.action.indexOf('YOUR_FORM_ID') === -1;
+  const isLocalPreview = () =>
+    location.protocol === 'file:' ||
+    /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
 
   const validate = (form) => {
     let ok = true;
@@ -430,10 +437,10 @@
 
   const mailtoFallback = (form) => {
     const data = new FormData(form);
-    const subject = data.get('_subject') || 'SHINE inquiry';
+    const subject = SUBJECTS[data.get('form-name')] || 'SHINE inquiry';
     const lines = [];
     data.forEach((v, k) => {
-      if (k.charAt(0) === '_' || !String(v).trim()) return;
+      if (k === 'form-name' || k === 'bot-field' || !String(v).trim()) return;
       lines.push(k.charAt(0).toUpperCase() + k.slice(1) + ': ' + v);
     });
     window.location.href = 'mailto:' + LEAD_EMAIL +
@@ -442,12 +449,12 @@
   };
 
   const submitLead = async (form) => {
-    if (!endpointReady(form)) { mailtoFallback(form); return true; }
+    if (isLocalPreview()) { mailtoFallback(form); return true; }
     try {
-      const res = await fetch(form.action, {
+      const res = await fetch('/', {
         method: 'POST',
-        body: new FormData(form),
-        headers: { Accept: 'application/json' },
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString(),
       });
       return res.ok;
     } catch (_) {
